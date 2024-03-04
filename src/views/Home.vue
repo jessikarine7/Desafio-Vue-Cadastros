@@ -4,6 +4,9 @@
 <template>
   <div class="div">
     Olá, Mundo! euuuuu
+    <v-btn>
+      aqui
+    </v-btn>
   </div>
 </template>
 

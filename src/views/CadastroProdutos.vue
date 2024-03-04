@@ -2,7 +2,6 @@
 </script>
 
 <template>
-  <!-- <TheWelcome /> -->
   <div class="pag2">
     Olá, Mundo! 2
   </div>
