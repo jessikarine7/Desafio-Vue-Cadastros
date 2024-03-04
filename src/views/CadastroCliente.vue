@@ -3,7 +3,7 @@
 
 <template>
   <div class="div">
-    Olá, Mundo!
+    Cadastro Clientes
   </div>
 </template>
 

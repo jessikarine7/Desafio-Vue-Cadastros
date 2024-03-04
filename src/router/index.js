@@ -17,6 +17,26 @@ const router = createRouter({
       path: '/cadastro-cliente',
       name: 'cadastro-cliente',
       component: () => import('../views/CadastroCliente.vue')
+    },
+    {
+      path: '/selecao-produtos',
+      name: 'selecao-produtos',
+      component: () => import('../views/SelecaoProdutos.vue')
+    },
+    {
+      path: '/listagem-geral',
+      name: 'listagem-geral',
+      component: () => import('../views/ListagemGeral.vue')
+    },
+    {
+      path: '/listagem-produtos',
+      name: 'listagem-produtos',
+      component: () => import('../views/ListagemProdutos.vue')
+    },
+    {
+      path: '/listagem-clientes',
+      name: 'listagem-clientes',
+      component: () => import('../views/ListagemClientes.vue')
     }
   ]
 })

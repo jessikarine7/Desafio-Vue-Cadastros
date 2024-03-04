@@ -3,12 +3,12 @@
 
 <template>
   <div class="pag2">
-    Cadastro produtos
+    Listagem Geral
   </div>
 </template>
 
 <style lang="scss" scoped>
 .pag2{
-  color:blue;
+  color:black;
 }
 </style>

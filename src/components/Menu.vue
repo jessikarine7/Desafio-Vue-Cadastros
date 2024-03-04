@@ -1,4 +1,11 @@
 <script>
+export default {
+  methods: {
+    clickHome() {
+      this.$router.push({ name: 'home' });
+    }
+  }
+}
 </script>
 
 <template>
@@ -19,9 +26,11 @@
 
         <v-spacer></v-spacer>
 
-        <p 
+        <v-btn 
           class="mx-4 Home"
-        >Home</p>
+          text
+          @click="clickHome"
+        >Home</v-btn>
 
         <v-btn 
           class="mr-8"
