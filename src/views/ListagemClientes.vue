@@ -1,27 +1,25 @@
 <script setup>
-  import { ref } from 'vue'
-  import ModalEdit from '../components/ModalEdit.vue'
-  import PesquisarTabela from '../components/PesquisarTabela.vue'
+  import { ref, onMounted } from 'vue';
+  import ModalEdit from '../components/ModalEdit.vue';
+  import PesquisarTabela from '../components/PesquisarTabela.vue';
+  import { getClientes  } from '../services/clientes';
 
-  const itemsTab = ref([
-    { 
-      id: '01', 
-      Nome: 'Cliente 01', 
-      Status: 'Ativo', 
-      Produtos: 'Produto Z, Produto W, Produto Y, Produto A',
-      Editar: '',
-    },
-    { 
-      id: '02', 
-      Nome: 'Cliente 02', 
-      Status: 'Inativo', 
-      Produtos: 'Produto X',
-      Editar: '',
+  const itemsTab = ref([]);
+  const search = ref('');
+  const showModalEdit = ref(false);
+
+  const getItems = async () => {
+    try {
+      const response = await getClientes();
+      itemsTab.value = response;
+    } catch (error) {
+      console.error('Erro ao buscar dados:', error);
     }
-  ])
+  };
 
-  const search = ref('')
-  const showModalEdit = ref(false)
+  onMounted(() => {
+    getItems();
+  });
 </script>
 
 <template>
@@ -39,6 +37,9 @@
           <tr>
             <td>{{ item.id }}</td>
             <td>{{ item.Nome }}</td>
+            <td>{{ item.Cpf }}</td>
+            <td>{{ item.Telefone }}</td>
+            <td>{{ item.Email }}</td>
             <td>{{ item.Status }}</td>
 
             <td>

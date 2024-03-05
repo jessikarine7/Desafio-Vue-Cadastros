@@ -1,18 +1,32 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed } from 'vue';
+import { updateProduto, getById } from '../services/produtos';
 
-const dialog = ref(true)
-const fecharModal = () => {
-  dialog.value = false;
-}
+const emit = defineEmits(['update:modelValue']);
+defineProps(['modelValue']);
 
-const switchStatus = ref(false)
-const statusLabel = computed(() => switchStatus.value ? 'Ativo' : 'Inativo')
+const emitCloseModal = () => {
+  emit('update:modelValue');
+};
+
+const switchStatus = ref(false);
+const statusLabel = computed(() => switchStatus.value ? 'Ativo' : 'Inativo');
+
+const saveChanges = () => {
+  updateProduto(editItem.value.id)
+    .then(() => {
+      getItems();
+
+    })
+    .catch((error) => {
+      console.error('Erro ao salvar alterações:', error);
+    });
+};
 </script>
 
 <template>
   <v-dialog
-    v-model="dialog"
+    :modelValue="modelValue"
     width="800"
     height="600"
   >
@@ -47,13 +61,14 @@ const statusLabel = computed(() => switchStatus.value ? 'Ativo' : 'Inativo')
           class="mr-4"
           width="150" 
           color="red-darken-4"
-          @click="fecharModal"
+          @click="emitCloseModal"
         >Cancelar</v-btn>
   
         <v-btn
           width="150" 
           color="indigo-accent-4"
           :to="{name: 'home'}"
+          @click="saveChanges"
         >Confirmar</v-btn>
       </v-row>
     </v-card>

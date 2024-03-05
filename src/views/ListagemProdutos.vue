@@ -1,32 +1,48 @@
 <script setup>
-  import { ref } from 'vue'
-  import ModalEdit from '../components/ModalEdit.vue'
-  import PesquisarTabela from '../components/PesquisarTabela.vue'
+import { ref, onMounted } from 'vue';
+import ModalEdit from '../components/ModalEdit.vue';
+import PesquisarTabela from '../components/PesquisarTabela.vue';
+import { getProdutos, deleteProduto } from '../services/produtos';
 
-  const itemsTab = ref([
-    { 
-      id: '01', 
-      Nome: 'Produto X', 
-      Quantidade: '10', 
-      Status: 'Ativo',
-      Editar: '',
-    },
-    { 
-      id: '02', 
-      Nome: 'Produto Y', 
-      Quantidade: '20', 
-      Status: 'Inativo',
-      Editar: '',
-    }
-  ])
+const itemsTab = ref([]);
+const search = ref('');
+const showModalEdit = ref(false);
+const editItem = ref(null);
 
-  const search = ref('')
-  const showModalEdit = ref(false)
+const getItems = async () => {
+  try {
+    const response = await getProdutos();
+    itemsTab.value = response;
+  } catch (error) {
+    console.error('Erro ao buscar dados:', error);
+  }
+};
+
+onMounted(() => {
+  getItems();
+});
+
+const openEditModal = (item) => {
+  editItem.value = { ...item };
+  showModalEdit.value = true;
+};
+console.log('aqui', editItem.value);
+
+// const deleteItem = () => {
+//   deleteProduto(editingItem.value.id)
+//     .then(() => {
+//       getItems();
+//       showModalEdit.value = false;
+//     })
+//     .catch((error) => {
+//       console.error('Erro ao excluir item:', error);
+//     });
+// };
 </script>
 
 <template>
   <div class="d-flex flex-column pa-6 mr-12" style="width: 100%">
-    <ModalEdit v-if="showModalEdit" @close="showModalEdit = false" />
+    <ModalEdit v-model="showModalEdit"/>
     <PesquisarTabela @search="search = $event" title="Listagem Produtos"/>
 
     <v-card class="readonly-8 d-flex elevation-5">
@@ -42,8 +58,12 @@
             <td>{{ item.Quantidade }}</td>
             <td>{{ item.Status }}</td>
 
-            <td @click="showModalEdit = true">
+            <td @click="openEditModal(item)">
               <v-icon>mdi-pencil</v-icon>
+            </td>
+
+            <td @click="handleDelete(item.id)">
+              <v-icon>mdi-delete</v-icon>
             </td>
           </tr>
         </template>
@@ -65,4 +85,4 @@
     flex: 0px;
     margin: 0px;
   }
-</style>
+</style>../services/produtos
