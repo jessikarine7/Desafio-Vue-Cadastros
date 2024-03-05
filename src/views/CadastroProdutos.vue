@@ -5,8 +5,8 @@
 
   const switchStatus = ref(false)
   const statusLabel = computed(() => switchStatus.value ? 'Ativo' : 'Inativo')
-  const showModalCancel = ref(false);
-  const showModalConfirm = ref(false);
+  const showModalCancel = ref(false)
+  const showModalConfirm = ref(false)
 </script>
 
 <template>

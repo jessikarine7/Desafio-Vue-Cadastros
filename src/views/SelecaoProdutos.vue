@@ -1,10 +1,10 @@
 <script setup>
-  import { ref } from 'vue'
-  import ModalCancelar from '../components/ModalCancelar.vue'
-  import ModalConfirmar from '../components/ModalConfirmar.vue'
+import { ref } from 'vue'
+import ModalCancelar from '../components/ModalCancelar.vue'
+import ModalConfirmar from '../components/ModalConfirmar.vue'
 
-  const showModalCancel = ref(false);
-  const showModalConfirm = ref(false);
+const showModalCancel = ref(false);
+const showModalConfirm = ref(false);
 </script>
 
 <template>
@@ -23,6 +23,7 @@
         >Seleção de produtos</p>
   
         <v-select 
+          :items="['Cliente 01', 'Cliente 02']"
           class="mb-4"
           variant="outlined"
           label="Cliente"
@@ -32,6 +33,7 @@
         ></v-select>
 
         <v-select 
+          :items="['Produto X', 'Produto Y']"
           class="mb-4"
           variant="outlined"
           label="Produto"
