@@ -1,6 +1,7 @@
 <script setup>
   import { ref } from 'vue'
   import ModalEdit from '../components/ModalEdit.vue'
+  import PesquisarTabela from '../components/PesquisarTabela.vue'
 
   const itemsTab = ref([
     { 
@@ -25,24 +26,8 @@
 
 <template>
   <div class="d-flex flex-column pa-6 mr-12" style="width: 100%">
-
     <ModalEdit v-if="showModalEdit" @close="showModalEdit = false" />
-
-    <v-row class="d-flex align-center row px-4">
-      <p class="mr-4 title">Listagem Produtos</p>
-
-      <v-spacer></v-spacer>
-
-      <v-text-field
-        v-model="search"
-        density="compact"
-        label="Pesquisar"
-        variant="outlined"
-        prepend-inner-icon="mdi-magnify"
-        clearable
-        hide-details
-      ></v-text-field>
-    </v-row>
+    <PesquisarTabela @search="search = $event" title="Listagem Produtos"/>
 
     <v-card class="readonly-8 d-flex elevation-5">
       <v-data-table 

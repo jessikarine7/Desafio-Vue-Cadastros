@@ -62,7 +62,7 @@
             ></v-list-item>
 
           <v-list-item 
-            prepend-icon="mdi-list-box" 
+            prepend-icon="mdi-account-file-text" 
             title="Listagem Clientes" 
             value="listagemClientes"
             :to="{ name: 'listagem-clientes' }"
