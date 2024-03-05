@@ -24,11 +24,6 @@ const router = createRouter({
       component: () => import('../views/SelecaoProdutos.vue')
     },
     {
-      path: '/listagem-geral',
-      name: 'listagem-geral',
-      component: () => import('../views/ListagemGeral.vue')
-    },
-    {
       path: '/listagem-produtos',
       name: 'listagem-produtos',
       component: () => import('../views/ListagemProdutos.vue')

@@ -5,7 +5,6 @@ const items = ref([
   { title: 'Cadastro Clientes', subtitle: 'Cadastrar um novo cliente', path: '/cadastro-cliente' },
   { title: 'Cadastro Produto', subtitle: 'Cadastrar um novo produto', path: '/cadastro-produtos' },
   { title: 'Seleção de Produtos', subtitle: 'Selecionar um produto', path: '/selecao-produtos' },
-  { title: 'Listagem Geral', subtitle: 'Listagem de clientes e seus produtos', path: '/listagem-geral' },
   { title: 'Listagem Produtos', subtitle: 'Listagem de produtos', path: '/listagem-produtos' },
   { title: 'Listagem Clientes', subtitle: 'Listagem de clientes', path: '/listagem-clientes' },
 ])

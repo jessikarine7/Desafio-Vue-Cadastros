@@ -56,13 +56,6 @@
 
           <v-list-item 
             prepend-icon="mdi-list-box" 
-            title="Listagem Geral" 
-            value="listagemGeral"
-            :to="{ name: 'listagem-geral' }"
-          ></v-list-item>
-
-          <v-list-item 
-            prepend-icon="mdi-list-box" 
             title="Listagem Produtos" 
             value="listagemProdutos"
             :to="{ name: 'listagem-produtos' }"
