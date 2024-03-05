@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <v-card>
+  <v-card style="z-index:99">
     <v-layout>
       <v-navigation-drawer
         expand-on-hover
@@ -29,44 +29,50 @@
           <v-list-item 
             prepend-icon="mdi-home" 
             title="Home" 
-            value="myfiles"
-           
+            value="home"
+            :to="{ name: 'home' }"
           ></v-list-item>
 
           <v-list-item 
             prepend-icon="mdi-account-multiple" 
             title="Cadastro Cliente" 
-            value="myfiles"
+            value="cadastroCliente"
+            :to="{ name: 'cadastro-cliente' }"
           ></v-list-item>
 
           <v-list-item 
             prepend-icon="mdi-package-variant-plus" 
             title="Cadastro Produtos" 
-            value="myfiles"
+            value="cadastroProdutos"
+            :to="{ name: 'cadastro-produtos' }"
           ></v-list-item>
 
           <v-list-item 
             prepend-icon="mdi-checkbox-marked-circle" 
             title="Seleção de Produtos" 
-            value="myfiles"
+            value="selecaoProdutos"
+            :to="{ name: 'selecao-produtos' }"
           ></v-list-item>
 
           <v-list-item 
             prepend-icon="mdi-list-box" 
             title="Listagem Geral" 
-            value="myfiles"
+            value="listagemGeral"
+            :to="{ name: 'listagem-geral' }"
           ></v-list-item>
 
           <v-list-item 
             prepend-icon="mdi-list-box" 
             title="Listagem Produtos" 
-            value="myfiles"
+            value="listagemProdutos"
+            :to="{ name: 'listagem-produtos' }"
             ></v-list-item>
 
           <v-list-item 
             prepend-icon="mdi-list-box" 
             title="Listagem Clientes" 
-            value="myfiles"
+            value="listagemClientes"
+            :to="{ name: 'listagem-clientes' }"
           ></v-list-item>
         </v-list>
       </v-navigation-drawer>

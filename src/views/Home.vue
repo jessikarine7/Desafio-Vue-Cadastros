@@ -20,7 +20,7 @@ const navigate = (path) => {
   <div class="d-flex flex-column">
     <p class="tituloHome pl-4">Lista de Opções</p>
 
-    <v-row class="pa-5" >
+    <v-row class="pa-5">
       <v-col
         v-for="(item, index) in items"
         :key="index"

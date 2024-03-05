@@ -1,10 +1,10 @@
-<script>
-export default {
-  methods: {
-    clickHome() {
-      this.$router.push({ name: 'home' });
-    }
-  }
+<script setup>
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+function clickHome () {
+  router.push({ name: 'home' });
 }
 </script>
 
