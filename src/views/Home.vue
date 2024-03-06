@@ -1,29 +1,52 @@
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-const items = ref([
-  { title: 'Cadastro Clientes', subtitle: 'Cadastrar um novo cliente', path: '/cadastro-cliente' },
-  { title: 'Cadastro Produto', subtitle: 'Cadastrar um novo produto', path: '/cadastro-produtos' },
-  { title: 'Seleção de Produtos', subtitle: 'Selecionar um produto', path: '/selecao-produtos' },
-  { title: 'Listagem Produtos', subtitle: 'Listagem de produtos', path: '/listagem-produtos' },
-  { title: 'Listagem Clientes', subtitle: 'Listagem de clientes', path: '/listagem-clientes' },
-])
-const router = useRouter()
+  import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
-const navigate = (path) => {
-  router.push(path)
-}
+  const router = useRouter();
+  const navigate = (path) => {
+    router.push(path);
+  };
+
+  const items = ref([
+    { 
+      title: 'Cadastro Clientes', 
+      subtitle: 'Cadastrar um novo cliente', 
+      path: '/cadastro-cliente' 
+    },
+    { 
+      title: 'Cadastro Produto', 
+      subtitle: 'Cadastrar um novo produto', 
+      path: '/cadastro-produtos' 
+    },
+    { 
+      title: 'Seleção de Produtos', 
+      subtitle: 'Selecionar um produto', 
+      path: '/selecao-produtos' 
+    },
+    { 
+      title: 'Listagem Produtos', 
+      subtitle: 'Listagem de produtos', 
+      path: '/listagem-produtos' 
+    },
+    { 
+      title: 'Listagem Clientes', 
+      subtitle: 'Listagem de clientes', 
+      path: '/listagem-clientes' 
+    },
+  ]);
 </script>
 
 <template>
   <div class="d-flex flex-column">
-    <p class="tituloHome pl-4">Lista de Opções</p>
+    <p class="tituloHome pl-4">
+      Lista de Opções
+    </p>
 
-    <v-row class="pa-5">
+    <v-row class="pa-5 mr-4">
       <v-col
         v-for="(item, index) in items"
         :key="index"
-        style="min-width: 420px"
+        class="container"
       >
         <v-card 
           @click="navigate(item.path)"
@@ -51,11 +74,18 @@ const navigate = (path) => {
         </v-card>
       </v-col>
     </v-row>
-
   </div>
 </template>
 
 <style lang="scss" scoped>
+  @media (max-width:500px){
+    .titleCard{
+      font-size: 18px;
+    }
+  }
+  .container{
+    min-width: 380px;
+  }
   .titleCard{
     font-weight: bold;
     color: #1E319E;

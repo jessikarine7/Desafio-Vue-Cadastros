@@ -2,10 +2,11 @@
 </script>
 
 <template>
-  <v-card style="z-index:99">
+  <v-card style="z-index:9" class="container">
     <v-layout>
       <v-navigation-drawer
         expand-on-hover
+        permanent
         rail
         class="elevation-5"
         style="margin-top: 65px;"
@@ -73,5 +74,5 @@
   </v-card>
 </template>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
 </style>

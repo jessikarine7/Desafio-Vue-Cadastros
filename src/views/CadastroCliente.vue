@@ -1,5 +1,4 @@
 <script setup>
-  // import { VueMaskDirective } from 'v-mask'
   import { ref, computed, onMounted } from 'vue';
   import { createClientes  } from '@/services/clientes';
   import { getProdutos } from '@/services/produtos';
@@ -7,8 +6,7 @@
   import AlertConfirm from '@/components/AlertConfirm.vue';
   import AlertMessage from '@/components/AlertMessage.vue';
 
-  const switchStatus = ref(false)
-  const statusLabel = computed(() => switchStatus.value ? 'Ativo' : 'Inativo')
+  const switchStatus = ref(false);
   const showAlertCancel = ref(false);
   const showModalConfirm = ref(false);
   const showAlertMessage = ref(false);
@@ -20,9 +18,14 @@
   const produto = ref('');
   const produtos = ref([]);
 
+  const statusLabel = computed(() => 
+    switchStatus.value ? 'Ativo' : 'Inativo'
+  );
+
   const openAlertCancel= () => {
     showAlertCancel.value = true;
   };
+
   const openAlertConfirm= () => {
     showModalConfirm.value = true;
   };
@@ -55,10 +58,10 @@
     }
   };
 
-onMounted(async () => {
-  produtos.value = await getProdutos();
-  console.log(produtos.value);
-});
+  onMounted(async () => {
+    produtos.value = await getProdutos();
+    console.log(produtos.value);
+  });
 </script>
 
 <template>
@@ -67,35 +70,34 @@ onMounted(async () => {
     :type="alertType"
     title="Seus dados foram atualizados com sucesso!" 
   />
+  <AlertCancel 
+    v-model="showAlertCancel"
+  />
+  <AlertConfirm 
+    v-model="showModalConfirm" 
+    @confirm="handleConfirm"
+  />
 
   <div class="container d-flex justify-center elevation-2">
-    <AlertCancel 
-      v-model="showAlertCancel"
-    />
-    <AlertConfirm 
-      v-model="showModalConfirm" 
-      @confirm="handleConfirm"
-    />
-
     <v-card 
-      class="pa-6" 
+      class="pa-6 cardContainer" 
       color="white" 
       min-width="500" 
-      height="740"
+      height="70%"
     >
-      <p class="pa-6 d-flex justify-center title"
-      >Cadastro de Clientes</p>
+      <p class="pa-6 d-flex justify-center title">
+        Cadastro de Clientes
+      </p>
     
       <v-form>
-
         <v-text-field
           v-model="nome" 
           class="mb-4"
           variant="outlined"
           label="Nome"
-          hint="Digite seu nome completo sem acentos"
           persistent-hint
           clearable
+          hint="Digite seu nome completo sem acentos"
         ></v-text-field>
   
         <v-text-field
@@ -103,9 +105,9 @@ onMounted(async () => {
           class="mb-4"
           variant="outlined"
           label="CPF"
-          hint="Digite seu CPF, sem caracteres especiais"
           persistent-hint
           clearable
+          hint="Digite seu CPF, sem caracteres especiais"
         ></v-text-field>
   
         <v-text-field
@@ -113,9 +115,9 @@ onMounted(async () => {
           class="mb-4"
           variant="outlined"
           label="Telefone"
-          hint="Digite seu telefone, com ddd"
           persistent-hint
           clearable
+          hint="Digite seu telefone, com ddd"
         ></v-text-field>
   
         <v-text-field
@@ -123,24 +125,24 @@ onMounted(async () => {
           class="mb-4"
           variant="outlined"
           label="Email"
-          hint="Digite seu e-mail, o mais utilizado"
           persistent-hint
           clearable
+          hint="Digite seu e-mail, o mais utilizado"
         ></v-text-field>
   
         <v-select 
           v-model="produto" 
           :items="produtos.map(item => ({ title: item.Nome, value: item.id }))"
-          return-object
           :value="produtos.id"
           class="mb-4"
           variant="outlined"
           label="Produto"
-          hint="Selecione o produto desejado"
-          persistent-hint
+          return-object
           clearable
           multiple
           chips
+          persistent-hint
+          hint="Selecione o produto desejado"
         ></v-select>
    
         <v-switch
@@ -171,13 +173,19 @@ onMounted(async () => {
   </div>
 </template> 
 
-<style scoped>
-.container{
-  margin: auto;
-}
-.title{
-  font-weight: 600;
-  color: #1E319E;
-  font-size: 25px;
-}
+<style lang="scss" scoped>
+  @media (max-width:1700px){
+
+    .cardContainer{
+      min-height: 650px;
+    }
+  }
+  .container{
+    margin: auto;
+  }
+  .title{
+    font-weight: 600;
+    color: #1E319E;
+    font-size: 25px;
+  }
 </style>

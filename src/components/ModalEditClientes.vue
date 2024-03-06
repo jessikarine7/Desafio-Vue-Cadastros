@@ -7,7 +7,7 @@ const emit = defineEmits(['update:modelValue', 'updateData']);
 const props = defineProps(['modelValue', 'editData']);
 
 const emitCloseModal = () => {
-  emit('update:modelValue');
+  emit('update:modelValue', false);
 };
 
 const cliente = toRef(() => props.editData);
@@ -17,14 +17,12 @@ const produtosItens = ref([]);
 
 onMounted(async () => {
   produtosItens.value = await getProdutos();
-  produtosSelecao.value = [...cliente.value.produto]
+  produtosSelecao.value = produtosItens.value.filter((p) => cliente.value.produto.includes(p.id))
 })
 
 const confirmEdit = async () => {
   cliente.value.produto = produtosSelecao.value.map((p) => p.id);
   delete cliente.value.produtos
-  console.log(cliente.value)
-  return
 
   try {
     const itemId = cliente.value.id;
