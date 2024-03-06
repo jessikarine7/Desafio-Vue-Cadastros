@@ -40,6 +40,7 @@ const showModalConfirm = ref(false);
           hint="Selecione o produto desejado"
           persistent-hint
           clearable
+          multiple
         ></v-select>
       </v-col>
 

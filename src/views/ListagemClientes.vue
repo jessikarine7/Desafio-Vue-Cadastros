@@ -1,12 +1,33 @@
 <script setup>
   import { ref, onMounted } from 'vue';
-  import ModalEdit from '../components/ModalEdit.vue';
-  import PesquisarTabela from '../components/PesquisarTabela.vue';
   import { getClientes  } from '../services/clientes';
+  import ModalEdit from '../components/ModalEditClientes.vue';
+  import PesquisarTabela from '../components/PesquisarTabela.vue';
+  import AlerSucess from '../components/AlertSucess.vue';
 
   const itemsTab = ref([]);
   const search = ref('');
   const showModalEdit = ref(false);
+  const editItem = ref(null);
+  const AlertSucess = ref(false);
+
+  const getStatusString = (status) => {
+    return status ? 'Ativo' : 'Inativo';
+  };
+
+  const openEditModal = (item) => {
+    editItem.value = { ...item };
+    showModalEdit.value = true;
+  };
+
+  const handleUpdateData = () => {
+    getItems();
+
+    AlertSucess.value= true;
+    setTimeout(() => {
+      AlertSucess.value= false;
+    }, 3000);
+  };
 
   const getItems = async () => {
     try {
@@ -24,8 +45,21 @@
 
 <template>
   <div class="d-flex flex-column pa-6 mr-12" style="width: 100%">
-    <ModalEdit v-if="showModalEdit" @close="showModalEdit = false" />
-    <PesquisarTabela @search="search = $event" title="Listagem Clientes"/>
+    <AlerSucess
+      v-model="AlertSucess" 
+      title="Seus dados foram atualizados com sucesso!" 
+    />
+
+    <ModalEdit 
+      v-model="showModalEdit" 
+      :edit-data="editItem" 
+      @update-data="handleUpdateData" 
+    />
+
+    <PesquisarTabela 
+      @search="search = $event" 
+      title="Listagem Clientes"
+    />
 
     <v-card class="readonly-8 d-flex elevation-5">
       <v-data-table 
@@ -40,7 +74,7 @@
             <td>{{ item.Cpf }}</td>
             <td>{{ item.Telefone }}</td>
             <td>{{ item.Email }}</td>
-            <td>{{ item.Status }}</td>
+            <td>{{ getStatusString(item.Status) }}</td>
 
             <td>
               <v-chip 
@@ -52,7 +86,7 @@
               </v-chip>
             </td>
 
-            <td @click="showModalEdit = true">
+            <td @click="openEditModal(item)">
               <v-icon>mdi-pencil</v-icon>
             </td>
           </tr>
@@ -75,4 +109,4 @@
     flex: 0px;
     margin: 0px;
   }
-</style>
+</style>../components/ModalEditProdutos.vue

@@ -22,7 +22,7 @@
       "Cpf": "111.111.111.-11",
       "Telefone": "000000000",
       "Email": "clientex@gmail.com",
-      "Status": "Ativo",
+      "Status": true,
       "Produtos": "Produto Z, Produto W, Produto Y, Produto A",
       "Editar": ""
     }

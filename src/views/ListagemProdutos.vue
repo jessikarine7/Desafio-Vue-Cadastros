@@ -1,46 +1,46 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { getProdutos } from '../services/produtos';
-import ModalEdit from '../components/ModalEdit.vue';
-import PesquisarTabela from '../components/PesquisarTabela.vue';
-import AlerSucess from '../components/AlertSucess.vue';
+  import { ref, onMounted } from 'vue';
+  import { getProdutos } from '../services/produtos';
+  import ModalEdit from '../components/ModalEditProdutos.vue';
+  import PesquisarTabela from '../components/PesquisarTabela.vue';
+  import AlerSucess from '../components/AlertSucess.vue';
 
-const itemsTab = ref([]);
-const search = ref('');
-const showModalEdit = ref(false);
-const editItem = ref(null);
-const AlertSucess = ref(false);
+  const itemsTab = ref([]);
+  const search = ref('');
+  const showModalEdit = ref(false);
+  const editItem = ref(null);
+  const AlertSucess = ref(false);
 
-const getStatusString = (status) => {
-  return status ? 'Ativo' : 'Inativo';
-};
+  const getStatusString = (status) => {
+    return status ? 'Ativo' : 'Inativo';
+  };
 
-const openEditModal = (item) => {
-  editItem.value = { ...item };
-  showModalEdit.value = true;
-};
+  const openEditModal = (item) => {
+    editItem.value = { ...item };
+    showModalEdit.value = true;
+  };
 
-const handleUpdateData = () => {
-  getItems();
+  const handleUpdateData = () => {
+    getItems();
 
-  AlertSucess.value= true;
-  setTimeout(() => {
-    AlertSucess.value= false;
-  }, 3000);
-};
+    AlertSucess.value= true;
+    setTimeout(() => {
+      AlertSucess.value= false;
+    }, 3000);
+  };
 
-const getItems = async () => {
-  try {
-    const response = await getProdutos();
-    itemsTab.value = response;
-  } catch (error) {
-    console.error('Erro ao buscar dados:', error);
-  }
-};
+  const getItems = async () => {
+    try {
+      const response = await getProdutos();
+      itemsTab.value = response;
+    } catch (error) {
+      console.error('Erro ao buscar dados:', error);
+    }
+  };
 
-onMounted(() => {
-  getItems();
-});
+  onMounted(() => {
+    getItems();
+  });
 </script>
 
 <template>
@@ -78,9 +78,9 @@ onMounted(() => {
               <v-icon>mdi-pencil</v-icon>
             </td>
 
-            <td @click="handleDelete(item.id)">
+            <!-- <td @click="handleDelete(item.id)">
               <v-icon>mdi-delete</v-icon>
-            </td>
+            </td> -->
           </tr>
         </template>
       </v-data-table>
@@ -101,4 +101,4 @@ onMounted(() => {
     flex: 0px;
     margin: 0px;
   }
-</style>../services/produtos
+</style>../services/produtos../components/ModalEditProdutos.vue
