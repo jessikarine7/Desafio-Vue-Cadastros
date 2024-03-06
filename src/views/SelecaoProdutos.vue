@@ -70,4 +70,4 @@ const showModalConfirm = ref(false);
   color: #1E319E;
   font-size: 25px;
 }
-</style>
+</style>../components/AlertCancelar.vue../components/AlertConfirmar.vue

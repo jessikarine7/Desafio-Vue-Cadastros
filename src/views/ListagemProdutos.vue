@@ -1,13 +1,33 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import { getProdutos } from '../services/produtos';
 import ModalEdit from '../components/ModalEdit.vue';
 import PesquisarTabela from '../components/PesquisarTabela.vue';
-import { getProdutos, deleteProduto } from '../services/produtos';
+import AlerSucess from '../components/AlertSucess.vue';
 
 const itemsTab = ref([]);
 const search = ref('');
 const showModalEdit = ref(false);
 const editItem = ref(null);
+const AlertSucess = ref(false);
+
+const getStatusString = (status) => {
+  return status ? 'Ativo' : 'Inativo';
+};
+
+const openEditModal = (item) => {
+  editItem.value = { ...item };
+  showModalEdit.value = true;
+};
+
+const handleUpdateData = () => {
+  getItems();
+
+  AlertSucess.value= true;
+  setTimeout(() => {
+    AlertSucess.value= false;
+  }, 3000);
+};
 
 const getItems = async () => {
   try {
@@ -21,29 +41,25 @@ const getItems = async () => {
 onMounted(() => {
   getItems();
 });
-
-const openEditModal = (item) => {
-  editItem.value = { ...item };
-  showModalEdit.value = true;
-};
-console.log('aqui', editItem.value);
-
-// const deleteItem = () => {
-//   deleteProduto(editingItem.value.id)
-//     .then(() => {
-//       getItems();
-//       showModalEdit.value = false;
-//     })
-//     .catch((error) => {
-//       console.error('Erro ao excluir item:', error);
-//     });
-// };
 </script>
 
 <template>
   <div class="d-flex flex-column pa-6 mr-12" style="width: 100%">
-    <ModalEdit v-model="showModalEdit"/>
-    <PesquisarTabela @search="search = $event" title="Listagem Produtos"/>
+    <AlerSucess
+      v-model="AlertSucess" 
+      title="Seus dados foram atualizados com sucesso!" 
+    />
+
+    <ModalEdit 
+      v-model="showModalEdit" 
+      :edit-data="editItem" 
+      @update-data="handleUpdateData" 
+    />
+
+    <PesquisarTabela 
+      @search="search = $event" 
+      title="Listagem Produtos"
+    />
 
     <v-card class="readonly-8 d-flex elevation-5">
       <v-data-table 
@@ -56,7 +72,7 @@ console.log('aqui', editItem.value);
             <td>{{ item.id }}</td>
             <td>{{ item.Nome }}</td>
             <td>{{ item.Quantidade }}</td>
-            <td>{{ item.Status }}</td>
+            <td>{{ getStatusString(item.Status) }}</td>
 
             <td @click="openEditModal(item)">
               <v-icon>mdi-pencil</v-icon>

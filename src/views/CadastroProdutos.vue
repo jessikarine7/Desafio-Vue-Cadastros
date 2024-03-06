@@ -1,7 +1,7 @@
 <script setup>
   import { ref, computed } from 'vue'
-  import ModalCancelar from '../components/ModalCancelar.vue'
-  import ModalConfirmar from '../components/ModalConfirmar.vue'
+  import AlertCancelar from '../components/AlertCancelar.vue'
+  import AlertConfirmar from '../components/AlertConfirmar.vue'
 
   const switchStatus = ref(false)
   const statusLabel = computed(() => switchStatus.value ? 'Ativo' : 'Inativo')
@@ -11,8 +11,8 @@
 
 <template>
   <div class="container d-flex justify-center elevation-2">
-    <ModalCancelar v-if="showModalCancel" @close="showModalCancel = false" />
-    <ModalConfirmar v-if="showModalConfirm" @close="showModalConfirm = false" />
+    <AlertCancelar v-if="showModalCancel" @close="showModalCancel = false" />
+    <AlertConfirmar v-if="showModalConfirm" @close="showModalConfirm = false" />
 
     <v-card 
       class="pa-4 d-flex justify-space-between flex-column" 
@@ -71,3 +71,4 @@
   font-size: 25px;
 }
 </style>
+../components/AlertCancelar.vue../components/AlertConfirmar.vue

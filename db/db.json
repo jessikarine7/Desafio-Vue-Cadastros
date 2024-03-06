@@ -1,28 +1,28 @@
 {
   "produtos": [
-    { 
-      "id": "01", 
-      "Nome": "Produto X", 
-      "Quantidade": "30", 
-      "Status": "Ativo",
+    {
+      "id": "01",
+      "Nome": "Produto X",
+      "Quantidade": "30",
+      "Status": true,
       "Editar": " "
     },
-    { 
-      "id": "02", 
-      "Nome": "Produto Z", 
-      "Quantidade": "10", 
-      "Status": "Inativo",
+    {
+      "id": "02",
+      "Nome": "Produto Z",
+      "Quantidade": "40",
+      "Status": false,
       "Editar": ""
     }
   ],
   "clientes": [
-    { 
-      "id": "01", 
-      "Nome": "Cliente X", 
-      "Cpf" : "111.111.111.-11",
-      "Telefone" : "000000000",
-      "Email" : "clientex@gmail.com",
-      "Status": "Ativo", 
+    {
+      "id": "01",
+      "Nome": "Cliente X",
+      "Cpf": "111.111.111.-11",
+      "Telefone": "000000000",
+      "Email": "clientex@gmail.com",
+      "Status": "Ativo",
       "Produtos": "Produto Z, Produto W, Produto Y, Produto A",
       "Editar": ""
     }

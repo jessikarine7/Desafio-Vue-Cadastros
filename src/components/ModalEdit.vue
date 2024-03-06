@@ -1,26 +1,24 @@
 <script setup>
-import { ref, computed } from 'vue';
-import { updateProduto, getById } from '../services/produtos';
+import { defineProps, defineEmits } from 'vue';
+import { updateProduto } from '../services/produtos';
 
-const emit = defineEmits(['update:modelValue']);
-defineProps(['modelValue']);
+const emit = defineEmits(['update:modelValue', 'updateData']);
+const props = defineProps(['modelValue', 'editData']);
 
 const emitCloseModal = () => {
   emit('update:modelValue');
 };
 
-const switchStatus = ref(false);
-const statusLabel = computed(() => switchStatus.value ? 'Ativo' : 'Inativo');
-
-const saveChanges = () => {
-  updateProduto(editItem.value.id)
-    .then(() => {
-      getItems();
-
-    })
-    .catch((error) => {
-      console.error('Erro ao salvar alterações:', error);
-    });
+const confirmEdit = async () => {
+  console.log(props.editData.id);
+  try {
+    const itemId = props.editData.id;
+    await updateProduto(itemId, props.editData);
+    emit('updateData');
+  } catch (error) {
+    console.error('Erro na atualização:', error);
+  }
+  emitCloseModal();
 };
 </script>
 
@@ -35,21 +33,23 @@ const saveChanges = () => {
 
       <v-form class="mt-6">
         <v-text-field 
+          v-model="editData.Nome"
           label="Nome"
           variant="outlined"
           clearable 
         ></v-text-field>
 
         <v-text-field 
+          v-model="editData.Quantidade"
           variant="outlined"
           label="Quantidade"
           clearable
         ></v-text-field>
 
         <v-switch
-          :label="`Status: ${statusLabel}`"
-          v-model="switchStatus"
-          color="indigo-accent-4"
+          :label="editData.Status ? 'Ativo' : 'Inativo'"
+          :color="editData.Status ? 'indigo-accent-4' : 'grey'"
+          v-model="editData.Status"
           hide-details
           inset
           clearable
@@ -67,8 +67,7 @@ const saveChanges = () => {
         <v-btn
           width="150" 
           color="indigo-accent-4"
-          :to="{name: 'home'}"
-          @click="saveChanges"
+          @click="confirmEdit"
         >Confirmar</v-btn>
       </v-row>
     </v-card>
