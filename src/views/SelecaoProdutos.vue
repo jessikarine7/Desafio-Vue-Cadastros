@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from 'vue'
-import ModalCancelar from '../components/ModalCancelar.vue'
-import ModalConfirmar from '../components/ModalConfirmar.vue'
+// import ModalCancelar from '../components/ModalCancelar.vue'
+// import ModalConfirmar from '../components/ModalConfirmar.vue'
 
-const showModalCancel = ref(false);
-const showModalConfirm = ref(false);
+// const showModalCancel = ref(false);
+// const showModalConfirm = ref(false);
 </script>
 
 <template>

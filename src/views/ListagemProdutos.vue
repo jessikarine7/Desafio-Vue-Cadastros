@@ -1,15 +1,16 @@
 <script setup>
   import { ref, onMounted } from 'vue';
-  import { getProdutos } from '../services/produtos';
-  import ModalEdit from '../components/ModalEditProdutos.vue';
-  import PesquisarTabela from '../components/PesquisarTabela.vue';
-  import AlerSucess from '../components/AlertSucess.vue';
+  import { getProdutos } from '@/services/produtos';
+  import ModalEdit from '@/components/ModalEditProdutos.vue';
+  import PesquisarTabela from '@/components/PesquisarTabela.vue';
+  import AlertMessage from '@/components/AlertMessage.vue';
 
   const itemsTab = ref([]);
   const search = ref('');
   const showModalEdit = ref(false);
   const editItem = ref(null);
-  const AlertSucess = ref(false);
+  const showAlertMessage = ref(false);
+  const alertType = ref('success');
 
   const getStatusString = (status) => {
     return status ? 'Ativo' : 'Inativo';
@@ -23,9 +24,9 @@
   const handleUpdateData = () => {
     getItems();
 
-    AlertSucess.value= true;
+    showAlertMessage.value= true;
     setTimeout(() => {
-      AlertSucess.value= false;
+      showAlertMessage.value= false;
     }, 3000);
   };
 
@@ -44,12 +45,13 @@
 </script>
 
 <template>
+  <AlertMessage
+    v-if="showAlertMessage"
+    :type="alertType"
+    title="Seus dados foram atualizados com sucesso!" 
+  />
+  
   <div class="d-flex flex-column pa-6 mr-12" style="width: 100%">
-    <AlerSucess
-      v-model="AlertSucess" 
-      title="Seus dados foram atualizados com sucesso!" 
-    />
-
     <ModalEdit 
       v-model="showModalEdit" 
       :edit-data="editItem" 
@@ -70,9 +72,9 @@
         <template v-slot:item="{ item }">
           <tr>
             <td>{{ item.id }}</td>
-            <td>{{ item.Nome }}</td>
-            <td>{{ item.Quantidade }}</td>
-            <td>{{ getStatusString(item.Status) }}</td>
+            <td>{{ item.nome }}</td>
+            <td>{{ item.quantidade }}</td>
+            <td>{{ getStatusString(item.status) }}</td>
 
             <td @click="openEditModal(item)">
               <v-icon>mdi-pencil</v-icon>
@@ -101,4 +103,4 @@
     flex: 0px;
     margin: 0px;
   }
-</style>../services/produtos../components/ModalEditProdutos.vue
+</style>

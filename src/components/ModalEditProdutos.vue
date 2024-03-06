@@ -33,23 +33,29 @@ const confirmEdit = async () => {
 
       <v-form class="mt-6">
         <v-text-field 
-          v-model="editData.Nome"
+          v-model="editData.nome"
           label="Nome"
           variant="outlined"
           clearable 
+          hint="Digite seu nome completo"
+          persistent-hint
+          class="mb-5"
         ></v-text-field>
 
         <v-text-field 
-          v-model="editData.Quantidade"
+          v-model="editData.quantidade"
           variant="outlined"
           label="Quantidade"
           clearable
+          hint="Digite a quantidade total de produtos"
+          persistent-hint
+          class="mb-5"
         ></v-text-field>
 
         <v-switch
-          :label="editData.Status ? 'Ativo' : 'Inativo'"
-          :color="editData.Status ? 'indigo-accent-4' : 'grey'"
-          v-model="editData.Status"
+          :label="editData.status ? 'Ativo' : 'Inativo'"
+          :color="editData.status ? 'indigo-accent-4' : 'grey'"
+          v-model="editData.status"
           hide-details
           inset
           clearable
