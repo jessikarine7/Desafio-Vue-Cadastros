@@ -41,32 +41,31 @@
 <template>
   <v-dialog
     :modelValue="modelValue"
-    width="800"
-    height="800"
+    class="dialog"
   >
-    <v-card class="d-flex pa-8">
-      <p class="titulo">Modal Editar</p>
+    <v-card class="d-flex pa-4">
+      <p class="title">Modal Editar</p>
 
-      <v-form class="mt-6">
+      <v-form class="mt-3 form">
         <v-text-field 
           v-model="cliente.nome"
           label="Nome"
           variant="outlined"
           clearable 
-          hint="Digite seu nome completo"
-          persistent-hint
-          class="mb-5"
+          hide-details
+          density="compact"
+          class="input"
         ></v-text-field>
 
         <v-text-field 
           v-model="cliente.cpf"
           v-maska:[optionsCpf]
-          variant="outlined"
           label="Cpf"
+          variant="outlined"
           clearable
-          hint="Digite seu cpf sem dígitos"
-          persistent-hint
-          class="mb-5"
+          hide-details
+          density="compact"
+          class="input"
         ></v-text-field>
 
         <v-text-field 
@@ -74,9 +73,9 @@
           variant="outlined"
           label="E-mail"
           clearable
-          hint="Digite seu email mais utilizado"
-          persistent-hint
-          class="mb-5"
+          hide-details
+          density="compact"
+          class="input"
         ></v-text-field>
 
         <v-text-field 
@@ -85,9 +84,9 @@
           variant="outlined"
           label="Telefone"
           clearable
-          hint="Digite seu telefone com o ddd"
-          persistent-hint
-          class="mb-5"
+          hide-details
+          density="compact"
+          class="input"
         ></v-text-field>
          
         <v-select
@@ -101,9 +100,9 @@
           label="Produtos"
           clearable
           multiple
-          hint="Selecione os produtos do seu cliente"
-          persistent-hint
-          class="mb-5"
+          hide-details
+          density="compact"
+          class="input"
         >
         </v-select>
 
@@ -112,21 +111,22 @@
           :color="cliente.status ? 'indigo-accent-4' : 'grey'"
           v-model="cliente.status"
           hide-details
-          inset
           clearable
+          density="compact"
         ></v-switch>
       </v-form>
 
-      <v-row class="mt-8 d-flex justify-center">
+      <v-row class="pb-1 btn">
         <v-btn
-          class="mr-4"
-          width="150" 
+          width="120" 
+          size="small" 
           color="red-darken-4"
           @click="emitCloseModal"
         >Cancelar</v-btn>
   
         <v-btn
-          width="150" 
+          width="120" 
+          size="small"
           color="indigo-accent-4"
           @click="confirmEdit"
         >Confirmar</v-btn>
@@ -136,9 +136,38 @@
 </template> 
 
 <style lang="scss" scoped>
-  
-  .titulo{
-    font-weight: 300;
-    font-size: 20px;
+  @media (max-width:800px) {
+    .dialog{
+      min-width: 350px;
+    }
+    .btn{
+      flex-wrap: wrap;
+    }
+  }
+  @media (max-width:300px) {
+    .dialog{
+      min-width: 280px;
+    }
+    .btn{
+      flex-wrap: wrap;
+    }
+  }
+  .btn{
+    margin-top: 2px;
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+  }
+  .dialog{
+    width: 40%;
+    box-sizing: border-box; 
+  }
+  .title{
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+  }
+  .input{
+    margin-bottom: 20px;
   }
 </style>

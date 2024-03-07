@@ -2,10 +2,10 @@
   import { ref, computed, onMounted } from 'vue';
   import { createClient  } from '@/services/clients';
   import { getProducts } from '@/services/products';
+  import { useMask } from '@/composables/useMask';
   import AlertCancel from '@/components/AlertCancel.vue';
   import AlertConfirm from '@/components/AlertConfirm.vue';
   import AlertMessage from '@/components/AlertMessage.vue';
-  import { useMask } from '@/composables/useMask';
 
   const switchStatus = ref(false);
   const showAlertCancel = ref(false);
@@ -63,7 +63,9 @@
 
   onMounted(async () => {
     const produtosRes = await getProducts();
-    produtos.value = produtosRes.map((item) => ({ title: item.nome, id: item.id }))
+    produtos.value = produtosRes.map((item) => 
+      ({ title: item.nome, id: item.id })
+    );
   });
 </script>
 
@@ -71,7 +73,7 @@
   <AlertMessage
     v-if="showAlertMessage"
     :type="alertType"
-    title="Seus dados foram atualizados com sucesso!" 
+    title="Cliente registrado com sucesso!" 
   />
 
   <AlertCancel 
@@ -83,15 +85,11 @@
     @confirm="handleConfirm"
   />
 
-  <v-card 
-    class="pa-6 container  elevation-2" 
-    color="white" 
-  >
-    <p class="mt-2 mb-4 d-flex justify-center title">
-      Cadastro de Clientes
-    </p>
-  
-    <v-form class="form">
+  <v-card class="pa-5 container elevation-2">
+    <v-form class="form" color="white" >
+      <p class="mb-2 d-flex justify-center title">
+        Cadastro de Clientes
+      </p>
       <v-text-field
         v-model="nome" 
         class="input"
@@ -99,9 +97,10 @@
         label="Nome"
         persistent-hint
         clearable
+        density="compact"
         hint="Digite seu nome completo sem acentos"
       ></v-text-field>
-
+  
       <v-text-field
         v-model="cpf" 
         v-maska:[optionsCpf]
@@ -110,9 +109,10 @@
         label="CPF"
         persistent-hint
         clearable
+        density="compact"
         hint="Digite seu CPF, sem caracteres especiais"
       ></v-text-field>
-
+  
       <v-text-field
         v-model="email" 
         class="input"
@@ -120,9 +120,10 @@
         label="Email"
         persistent-hint
         clearable
+        density="compact"
         hint="Digite seu e-mail, o mais utilizado"
       ></v-text-field>
-
+  
       <v-text-field
         v-model="telefone" 
         v-maska:[optionsTelefone]
@@ -131,9 +132,10 @@
         label="Telefone"
         persistent-hint
         clearable
+        density="compact"
         hint="Digite seu telefone, com ddd"
       ></v-text-field>
-
+  
       <v-select 
         v-model="produtoSelecao" 
         :items="produtos"
@@ -147,68 +149,47 @@
         multiple
         chips
         persistent-hint
+        density="compact"
         hint="Selecione o produto desejado"
       ></v-select>
- 
+  
       <v-switch
         v-model="switchStatus"
         :label="`Status: ${statusLabel}`"
         color="indigo-accent-4"
         class="input"
         hide-details
-        inset
         clearable
+        density="compact"
       ></v-switch>
-
-      <v-row class="pa-3 btn">
+  
+      <v-row class="pa-1 btn">
         <v-btn 
-          width="150" 
+          width="120" 
+          size="small"
           color="red-darken-4"
           @click="openAlertCancel"
         >Cancelar</v-btn>
   
         <v-btn 
-          width="150" 
+          width="120" 
+          size="small"
           color="indigo-accent-4"
           @click="openAlertConfirm"
         >Confirmar</v-btn>
       </v-row>
     </v-form>
   </v-card>
-  <div class="">
-  </div>
 </template> 
 
 <style lang="scss" scoped>
-  .btn{
-    margin-top: 15px;
-    display: flex;
-    justify-content: end;
-    gap: 10px;
-  }
-  .container{
-    width: 30%;
-    box-sizing: border-box; 
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .title{
-    font-weight: 600;
-    color: #1E319E;
-    font-size: 25px;
-  }
-  .input{
-    margin-bottom: 12px;
-  }
   @media (max-width: 1280px) {
     .container {
       min-width: 25%;
       width: auto; 
     }
     .title{
-      font-size: 22px;
+      font-size: 20px;
     }
     .btn{
       gap:10px;
@@ -219,12 +200,12 @@
       min-width: 80%;
       width: auto; 
       margin: 15px;
-      padding: 10px;
+      padding: 30px;
+      margin-top: 50px;
     }
     .title{
       font-size: 18px;
-      margin-top: 10px;
-      margin-bottom: 10px;
+      padding-top: 20px 
     }
     .btn{
       flex-wrap: wrap;
@@ -241,4 +222,31 @@
       display: none;
     }
   }
-</style>@/services/product
+  @media(max-width:300px){
+    .container{
+      height: 97%;
+    }
+  }
+  .btn{
+    margin-top: 2px;
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+  }
+  .container{
+    background-color: white;
+    width: 30%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .title{
+    font-weight: 600;
+    color: #1E319E;
+    font-size: 18px;
+  }
+  .input{
+    margin-bottom: 4px;
+  }
+</style>

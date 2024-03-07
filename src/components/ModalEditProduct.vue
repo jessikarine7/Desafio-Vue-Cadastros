@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps, defineEmits } from 'vue';
-import { updateProduto } from '@/services/products';
+import { updateProduct } from '@/services/products';
 
 const emit = defineEmits(['update:modelValue', 'updateData']);
 const props = defineProps(['modelValue', 'editData']);
@@ -13,7 +13,7 @@ const confirmEdit = async () => {
   console.log(props.editData.id);
   try {
     const itemId = props.editData.id;
-    await updateProduto(itemId, props.editData);
+    await updateProduct(itemId, props.editData);
     emit('updateData');
   } catch (error) {
     console.error('Erro na atualização:', error);
@@ -26,11 +26,10 @@ const confirmEdit = async () => {
 <template>
   <v-dialog
     :modelValue="modelValue"
-    width="800"
-    height="600"
+    class="dialog"
   >
-    <v-card class="d-flex pa-8">
-      <p class="titulo">Modal Editar</p>
+    <v-card class="d-flex pa-6">
+      <p class="title">Modal Editar</p>
 
       <v-form class="mt-6">
         <v-text-field 
@@ -41,6 +40,7 @@ const confirmEdit = async () => {
           hint="Digite seu nome completo"
           persistent-hint
           class="mb-5"
+          density="compact"
         ></v-text-field>
 
         <v-text-field 
@@ -52,6 +52,7 @@ const confirmEdit = async () => {
           hint="Digite a quantidade total de produtos"
           persistent-hint
           class="mb-5"
+          density="compact"
         ></v-text-field>
 
         <v-switch
@@ -59,21 +60,22 @@ const confirmEdit = async () => {
           :color="editData.status ? 'indigo-accent-4' : 'grey'"
           v-model="editData.status"
           hide-details
-          inset
           clearable
+          density="compact"
         ></v-switch>
       </v-form>
 
-      <v-row class="mt-8 d-flex justify-center">
+      <v-row class="pa-3 btn">
         <v-btn
-          class="mr-4"
-          width="150" 
+          width="120" 
+          size="small"
           color="red-darken-4"
           @click="emitCloseModal"
         >Cancelar</v-btn>
   
         <v-btn
-          width="150" 
+          width="120" 
+          size="small"
           color="indigo-accent-4"
           @click="confirmEdit"
         >Confirmar</v-btn>
@@ -83,8 +85,47 @@ const confirmEdit = async () => {
 </template> 
 
 <style lang="scss" scoped>
+   @media (max-width:800px) {
+    .dialog{
+      min-width: 350px;
+    }
+    :deep(.v-input__details){
+      min-height: 5px;
+      display: none;
+    }
+    .btn{
+      flex-wrap: wrap;
+    }
+  }
+  @media (max-width:300px) {
+    .dialog{
+      min-width: 280px;
+    }
+    :deep(.v-input__details){
+      min-height: 5px;
+      display: none;
+    }
+    .btn{
+      flex-wrap: wrap;
+    }
+  }
+  .btn{
+    margin-top: 2px;
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+  }
+  .dialog{
+    width: 45%;
+    box-sizing: border-box; 
+  }
+  .title{
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+  }
   .titulo{
     font-weight: 300;
     font-size: 20px;
   }
-</style>../services/product
+</style>

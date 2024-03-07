@@ -9,7 +9,7 @@ function clickHome () {
 </script>
 
 <template>
-  <v-card>
+  <v-card class="cardContainer">
     <v-layout>
       <v-app-bar
         color="white"
@@ -51,5 +51,8 @@ function clickHome () {
   }
   .Home{
     color: gray;
+  }
+  .cardContainer{
+    z-index:9;
   }
 </style>

@@ -1,7 +1,7 @@
 <script setup>
   import { ref, onMounted } from 'vue';
   import { getProducts } from '@/services/products';
-  import ModalEdit from '@/components/ModalEditProdutos.vue';
+  import ModalEditProduct from '@/components/ModalEditProduct.vue';
   import SearchTable from '@/components/SearchTable.vue';
   import AlertMessage from '@/components/AlertMessage.vue';
 
@@ -12,6 +12,14 @@
   const showAlertMessage = ref(false);
   const alertType = ref('success');
   const alertMessage = ref('');
+
+  const headers = ref([
+    { title: 'Id', key: 'id' },
+    { title: 'Nome', key: 'nome' },
+    { title: 'Quantidade', key: 'quantidade' },
+    { title: 'Status', key: 'status' },
+    { title: 'Ações', key: '' },
+  ]);
 
   const getStatusString = (status) => {
     return status ? 'Ativo' : 'Inativo';
@@ -53,14 +61,6 @@
   onMounted(() => {
     getItems();
   });
-
-  const headers = ref([
-    { title: 'Id', key: 'id' },
-    { title: 'Nome', key: 'nome' },
-    { title: 'Quantidade', key: 'quantidade' },
-    { title: 'Status', key: 'status' },
-    { title: 'Ações', key: '' },
-  ]);
 </script>
 
 <template>
@@ -71,7 +71,7 @@
   />
 
   <div class="d-flex flex-column container w-100">
-    <ModalEdit 
+    <ModalEditProduct 
       v-model="showModalEdit" 
       :edit-data="editItem" 
       @update-data="handleUpdateData"

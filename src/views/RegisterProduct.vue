@@ -1,6 +1,6 @@
 <script setup>
   import { ref, computed } from 'vue';
-  import { createProduto  } from '@/services/products';
+  import { createProduct  } from '@/services/products';
   import AlertCancel from '@/components/AlertCancel.vue';
   import AlertConfirm from '@/components/AlertConfirm.vue';
   import AlertMessage from '@/components/AlertMessage.vue';
@@ -29,7 +29,7 @@
     };
 
     try {
-      await createProduto(novoProduto);
+      await createProduct(novoProduto);
       nome.value = '';
       quantidade.value = '';
       switchStatus.value = false;
@@ -49,7 +49,7 @@
   <AlertMessage
     v-if="showAlertMessage"
     :type="alertType"
-    title="Seus dados foram atualizados com sucesso!" 
+    title="Produto registrado com sucesso!" 
   />
 
   <AlertCancel 
@@ -75,6 +75,7 @@
         class="input"
         variant="outlined"
         label="Nome"
+        density="compact"
         hint="Digite seu nome completo sem acentos"
         persistent-hint
         clearable
@@ -86,6 +87,7 @@
         variant="outlined"
         label="Quantidade"
         type="number"
+        density="compact"
         hint="Digite números, não pode informar letras"
         persistent-hint
         clearable
@@ -96,19 +98,21 @@
         v-model="switchStatus"
         color="indigo-accent-4"
         hide-details
-        inset
         clearable
+        density="compact"
       ></v-switch>
 
       <v-row class="pa-3 btn">
         <v-btn 
-          width="150" 
+          width="120" 
+          size="small"
           color="red-darken-4"
           @click="openAlertCancel"
         >Cancelar</v-btn>
 
         <v-btn 
-          width="150" 
+          width="120" 
+          size="small"
           color="indigo-accent-4"
           @click="openAlertConfirm"
         >Confirmar</v-btn>
@@ -118,31 +122,6 @@
 </template> 
 
 <style lang="scss" scoped>
-  .btn{
-    margin-top: 30%;
-    display: flex;
-    justify-content: end;
-    gap: 10px;
-  }
-  .input{
-    margin-bottom: 20px;
-  }
-  .container{
-    width: 30%;
-    gap: 8%;
-    box-sizing: border-box; 
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .title{
-    font-weight: 600;
-    color: #1E319E;
-    font-size: 25px;
-    display: flex;
-    justify-content: center;
-  }
   @media (max-width: 1280px) {
     .container {
       min-width: 270px;
@@ -188,5 +167,30 @@
       margin-right: 20px;
       margin-left: 10px;
     }
+  }
+  .btn{
+    margin-top: 30%;
+    gap: 10px;
+    display: flex;
+    justify-content: end;
+  }
+  .input{
+    margin-bottom: 20px;
+  }
+  .container{
+    width: 30%;
+    gap: 8%;
+    box-sizing: border-box; 
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .title{
+    font-weight: 600;
+    color: #1E319E;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
   }
 </style>

@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <v-card style="z-index:9" class="container">
+  <v-card class="container">
     <v-layout>
       <v-navigation-drawer
         expand-on-hover
@@ -43,15 +43,8 @@
           <v-list-item 
             prepend-icon="mdi-package-variant-plus" 
             title="Cadastro Produtos" 
-            value="cadastroProdutos"
-            :to="{ name: 'cadastro-produtos' }"
-          ></v-list-item>
-
-          <v-list-item 
-            prepend-icon="mdi-checkbox-marked-circle" 
-            title="Seleção de Produtos" 
-            value="selecaoProdutos"
-            :to="{ name: 'selecao-produtos' }"
+            value="register-product"
+            :to="{ name: 'register-product' }"
           ></v-list-item>
 
           <v-list-item 
@@ -74,7 +67,10 @@
 </template>
 
 <style lang="scss" scoped>
-.navigation{
-  margin-top: 59px;
-}
+  .navigation{
+    margin-top: 59px;
+  }
+  .container{
+    z-index:9;
+  }
 </style>

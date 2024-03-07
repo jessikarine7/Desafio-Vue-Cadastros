@@ -17,17 +17,17 @@ export const getById = async (id) => {
   return response.data
 }
 
-export const createProduto = async (postData) => {
+export const createProduct = async (postData) => {
   const response = await axios.post(`${API_BASE_URL}/produtos`, postData)
   return response.data
 }
 
-export const updateProduto = async (id, updatedData) => {
+export const updateProduct = async (id, updatedData) => {
   const response = await axios.put(`${API_BASE_URL}/produtos/${id}`, updatedData)
   return response.data
 }
 
-export const deleteProduto = async (id) => {
-  const response = await axios.delete(`${API_BASE_URL}/produtos/${id}`)
-  return response.data
-}
+// export const deleteProduto = async (id) => {
+//   const response = await axios.delete(`${API_BASE_URL}/produtos/${id}`)
+//   return response.data
+// }
