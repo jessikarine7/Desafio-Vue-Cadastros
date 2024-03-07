@@ -16,8 +16,8 @@
     "@mdi/js": "^7.4.47",
     "axios": "^1.6.7",
     "json-server": "^1.0.0-alpha.23",
+    "maska": "^2.1.11",
     "pinia": "^2.1.7",
-    "v-mask": "^2.3.0",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5",
     "vuetify": "^3.5.7"

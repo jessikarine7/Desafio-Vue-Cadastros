@@ -14,9 +14,9 @@ const router = createRouter({
       component: () => import('../views/CadastroProdutos.vue')
     },
     {
-      path: '/cadastro-cliente',
-      name: 'cadastro-cliente',
-      component: () => import('../views/CadastroCliente.vue')
+      path: '/register-client',
+      name: 'register-client',
+      component: () => import('../views/RegisterClient.vue')
     },
     {
       path: '/selecao-produtos',

@@ -1,10 +1,12 @@
 <script setup>
 import { defineProps, defineEmits, toRef, ref, onMounted } from 'vue';
-import { updateClientes } from '../services/clientes';
+import { updateClientes } from '@/services/clients';
 import { getProdutos } from '@/services/produtos';
+import { useMask } from '@/composables/useMask';
 
 const emit = defineEmits(['update:modelValue', 'updateData']);
 const props = defineProps(['modelValue', 'editData']);
+const { unmask, optionsCpf, optionsTelefone } = useMask();
 
 const emitCloseModal = () => {
   emit('update:modelValue', false);
@@ -58,6 +60,7 @@ const confirmEdit = async () => {
 
         <v-text-field 
           v-model="cliente.cpf"
+          v-maska:[optionsCpf]
           variant="outlined"
           label="Cpf"
           clearable
@@ -78,6 +81,7 @@ const confirmEdit = async () => {
 
         <v-text-field 
           v-model="cliente.telefone"
+          v-maska:[optionsTelefone]
           variant="outlined"
           label="Telefone"
           clearable

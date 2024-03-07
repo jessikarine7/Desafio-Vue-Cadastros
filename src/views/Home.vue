@@ -11,7 +11,7 @@
     { 
       title: 'Cadastro Clientes', 
       subtitle: 'Cadastrar um novo cliente', 
-      path: '/cadastro-cliente' 
+      path: '/register-client' 
     },
     { 
       title: 'Cadastro Produto', 

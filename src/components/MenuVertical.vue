@@ -37,8 +37,8 @@
           <v-list-item 
             prepend-icon="mdi-account-multiple" 
             title="Cadastro Cliente" 
-            value="cadastroCliente"
-            :to="{ name: 'cadastro-cliente' }"
+            value="registerClient"
+            :to="{ name: 'register-client' }"
           ></v-list-item>
 
           <v-list-item 

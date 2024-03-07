@@ -46,6 +46,7 @@ const confirmEdit = async () => {
           v-model="editData.quantidade"
           variant="outlined"
           label="Quantidade"
+          type="number"
           clearable
           hint="Digite a quantidade total de produtos"
           persistent-hint

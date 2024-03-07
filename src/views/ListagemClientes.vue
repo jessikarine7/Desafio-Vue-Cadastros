@@ -1,9 +1,10 @@
 <script setup>
   import { ref, onMounted } from 'vue';
-  import { getClientes  } from '@/services/clientes';
+  import { getClient  } from '@/services/clients';
   import ModalEditClientes from '@/components/ModalEditClientes.vue';
   import PesquisarTabela from '@/components/PesquisarTabela.vue';
   import AlertMessage from '@/components/AlertMessage.vue';
+  import { useMask } from '@/composables/useMask';
 
   const itemsTab = ref([]);
   const search = ref('');
@@ -12,6 +13,7 @@
   const showAlertMessage = ref(false);
   const alertType = ref('success');
   const alertMessage = ref('');
+  const { addMask } = useMask();
   
   const getStatusString = (status) => {
     return status ? 'Ativo' : 'Inativo';
@@ -24,7 +26,7 @@
 
   const getItems = async () => {
     try {
-      const response = await getClientes();
+      const response = await getClient();
       itemsTab.value = response;
     } catch (error) {
       console.error('Erro ao buscar dados:', error);
@@ -64,6 +66,8 @@
     { title: 'Produtos', key: 'nomesProdutos' },
     { title: 'Ações', key: '' },
   ])
+
+
 </script>
 
 <template>
@@ -98,9 +102,9 @@
           <tr>
             <td>{{ item.id || '-' }}</td>
             <td>{{ item.nome || '-' }}</td>
-            <td>{{ item.cpf || '-' }}</td>
+            <td>{{ addMask('cpf', item.cpf) || '-' }}</td>
             <td>{{ item.email || '-' }}</td>
-            <td>{{ item.telefone || '-' }}</td>
+            <td>{{ addMask('telefone', item.telefone) || '-' }}</td>
             <td>{{ getStatusString(item.status) || '-'}} </td>
 
             <td>
