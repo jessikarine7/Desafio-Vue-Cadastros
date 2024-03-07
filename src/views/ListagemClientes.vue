@@ -55,13 +55,13 @@
 </script>
 
 <template>
-  <div class="d-flex flex-column pa-6 mr-12" style="width: 100%">
-    <AlertMessage
-      v-if="showAlertMessage"
-      :type="alertType"
-      title="Seus dados foram atualizados com sucesso!" 
-    />
+  <AlertMessage
+    v-if="showAlertMessage"
+    :type="alertType"
+    title="Seus dados foram atualizados com sucesso!" 
+  />
 
+  <div class="d-flex flex-column pa-6 mt-12 w-100">
     <ModalEditClientes
       v-if="showModalEdit"
       v-model="showModalEdit" 
@@ -123,4 +123,4 @@
     flex: 0px;
     margin: 0px;
   }
-</style>../components/ModalEditProdutos.vue../components/AlertMesage.vue
+</style>

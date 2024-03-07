@@ -42,6 +42,14 @@
   onMounted(() => {
     getItems();
   });
+
+  const headers = ref([
+    { title: 'Id', key: 'id' },
+    { title: 'Nome', key: 'nome' },
+    { title: 'Quantidade', key: 'quantidade' },
+    { title: 'Status', key: 'status' },
+    { title: 'Ações', key: '' },
+  ])
 </script>
 
 <template>
@@ -50,8 +58,8 @@
     :type="alertType"
     title="Seus dados foram atualizados com sucesso!" 
   />
-  
-  <div class="d-flex flex-column pa-6 mr-12" style="width: 100%">
+
+  <div class="d-flex flex-column pa-6 mt-12 w-100">
     <ModalEdit 
       v-model="showModalEdit" 
       :edit-data="editItem" 
@@ -68,6 +76,7 @@
         class="ma-5" 
         :items="itemsTab" 
         :search="search"
+        :headers="headers"
       >
         <template v-slot:item="{ item }">
           <tr>
@@ -79,10 +88,6 @@
             <td @click="openEditModal(item)">
               <v-icon>mdi-pencil</v-icon>
             </td>
-
-            <!-- <td @click="handleDelete(item.id)">
-              <v-icon>mdi-delete</v-icon>
-            </td> -->
           </tr>
         </template>
       </v-data-table>

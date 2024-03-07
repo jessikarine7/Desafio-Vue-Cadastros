@@ -21,11 +21,10 @@ import MenuVertical from './components/MenuVertical.vue'
 
   .Rotas {
     background-color: rgb(248, 247, 247);
-    width: 100%;
     height: calc(100vh - 65px);
     margin-top: 65px;
     margin-left: 57px;
-    padding: 20px;
+    padding-top: 20px;
     box-sizing: border-box; 
   }
 </style>

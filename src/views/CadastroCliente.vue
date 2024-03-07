@@ -15,7 +15,7 @@
   const cpf = ref('');
   const telefone = ref('');
   const email = ref('');
-  const produto = ref('');
+  const produtoSelecao = ref(null);
   const produtos = ref([]);
 
   const statusLabel = computed(() => 
@@ -36,7 +36,7 @@
       cpf: cpf.value,
       telefone: telefone.value,
       email: email.value,
-      produto: produto.value.map((p) =>  p.value),
+      produto: produtoSelecao.value?.map((p) => p.id),
       status: switchStatus.value,
     };
 
@@ -46,7 +46,7 @@
       cpf.value = '';
       telefone.value = '';
       email.value = '';
-      produto.value = '';
+      produtoSelecao.value = null;
       switchStatus.value = false;
       showModalConfirm.value = false;
       showAlertMessage.value= true;
@@ -59,8 +59,8 @@
   };
 
   onMounted(async () => {
-    produtos.value = await getProdutos();
-    console.log(produtos.value);
+    const produtosRes = await getProdutos();
+    produtos.value = produtosRes.map((item) => ({ title: item.nome, id: item.id }))
   });
 </script>
 
@@ -131,9 +131,10 @@
         ></v-text-field>
   
         <v-select 
-          v-model="produto" 
-          :items="produtos.map(item => ({ title: item.Nome, value: item.id }))"
+          v-model="produtoSelecao" 
+          :items="produtos"
           :value="produtos.id"
+          item-value="id"
           class="mb-4"
           variant="outlined"
           label="Produto"

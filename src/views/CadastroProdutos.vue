@@ -61,12 +61,12 @@
     @confirm="handleConfirm"
   />
 
-  <div class="container d-flex justify-center elevation-2">
+  <div class="container d-flex justify-center elevation-2 mt-16">
     <v-card 
       class="pa-4 d-flex justify-space-between flex-column" 
       color="white" 
       min-width="500" 
-      height="750"
+      height="600"
     >
       <v-col>
         <p class="pa-4 d-flex justify-center title"

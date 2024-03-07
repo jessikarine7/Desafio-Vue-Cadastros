@@ -3,7 +3,7 @@
     {
       "id": "1",
       "nome": "Produto X",
-      "quantidade": "15",
+      "quantidade": "50",
       "status": true
     },
     {
@@ -17,6 +17,18 @@
       "nome": "Arroz",
       "quantidade": "30",
       "status": true
+    },
+    {
+      "id": "223a",
+      "nome": "Monitor",
+      "quantidade": "1",
+      "status": true
+    },
+    {
+      "id": "4b1c",
+      "nome": "Goiaba",
+      "quantidade": "10",
+      "status": true
     }
   ],
   "clientes": [
@@ -27,9 +39,42 @@
       "telefone": "1111111",
       "email": "jessikarine.santos@gmail.com",
       "produto": [
-        "5a43",
-        "1"
+        "1",
+        "5a43"
       ],
+      "status": false
+    },
+    {
+      "id": "c16a",
+      "nome": "Cliente 01",
+      "cpf": "3123",
+      "telefone": "1213",
+      "email": "sdasdasd",
+      "produto": [
+        "2",
+        "5a43"
+      ],
+      "status": true
+    },
+    {
+      "id": "d193",
+      "nome": "Jarbilane bins",
+      "cpf": "213",
+      "telefone": "213",
+      "email": "123",
+      "produto": [
+        "1",
+        "5a43",
+        "223a"
+      ],
+      "status": true
+    },
+    {
+      "id": "3271",
+      "nome": "Jéssica Karine Santos",
+      "cpf": "",
+      "telefone": "",
+      "email": "",
       "status": false
     }
   ]
