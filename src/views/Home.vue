@@ -44,6 +44,7 @@
 
     <v-row class="pa-5 mr-4">
       <v-col
+        data-testid="column"
         v-for="(item, index) in items"
         :key="index"
         class="container"

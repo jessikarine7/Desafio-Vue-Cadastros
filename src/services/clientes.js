@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:3000';
 
-export const getClientes= async () => {
+export const getClientes = async () => {
   const response = await axios.get(`${API_BASE_URL}/clientes`)
   const produtoBaseUrl = `${API_BASE_URL}/produtos`;
 

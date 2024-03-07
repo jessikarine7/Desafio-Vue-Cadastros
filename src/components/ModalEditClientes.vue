@@ -27,9 +27,10 @@ const confirmEdit = async () => {
   try {
     const itemId = cliente.value.id;
     await updateClientes(itemId, cliente.value);
-    emit('updateData');
+    emit('update-data');
   } catch (error) {
     console.error('Erro na atualização:', error);
+    emit('update-error');
   }
   emitCloseModal();
 };

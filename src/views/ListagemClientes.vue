@@ -11,6 +11,7 @@
   const editItem = ref(null);
   const showAlertMessage = ref(false);
   const alertType = ref('success');
+  const alertMessage = ref('');
   
   const getStatusString = (status) => {
     return status ? 'Ativo' : 'Inativo';
@@ -21,14 +22,6 @@
     showModalEdit.value = true;
   };
 
-  const handleUpdateData = async () => {
-    getItems();
-    showAlertMessage.value= true;
-    setTimeout(() => {
-      showAlertMessage.value= false;
-    }, 3000);
-  };
-
   const getItems = async () => {
     try {
       const response = await getClientes();
@@ -37,6 +30,25 @@
       console.error('Erro ao buscar dados:', error);
     }
   };
+
+  const handleUpdateData = async () => {
+    await getItems();
+    alertMessage.value = 'Seus dados foram atualizados com sucesso!';
+    alertType.value = 'success'
+    showAlertMessage.value = true;
+    setTimeout(() => {
+      showAlertMessage.value= false;
+    }, 3000);
+  };
+
+  const handleUpdateError = () => {
+    alertMessage.value = 'Ocorreu um erro tente novamente!';
+    alertType.value = 'error'
+    showAlertMessage.value = true;
+    setTimeout(() => {
+      showAlertMessage.value= false;
+    }, 3000);
+  }
 
   onMounted(() => {
     getItems();
@@ -58,7 +70,7 @@
   <AlertMessage
     v-if="showAlertMessage"
     :type="alertType"
-    title="Seus dados foram atualizados com sucesso!" 
+    :title="alertMessage" 
   />
 
   <div class="d-flex flex-column pa-6 mt-12 w-100">
@@ -66,7 +78,8 @@
       v-if="showModalEdit"
       v-model="showModalEdit" 
       :edit-data="editItem" 
-      @update-data="handleUpdateData" 
+      @update-data="handleUpdateData"
+      @update-error="handleUpdateError"
     />
 
     <PesquisarTabela 
