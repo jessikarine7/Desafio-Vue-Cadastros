@@ -1,6 +1,6 @@
 <script setup>
   import { ref, computed } from 'vue';
-  import { createProduto  } from '@/services/produtos';
+  import { createProduto  } from '@/services/products';
   import AlertCancel from '@/components/AlertCancel.vue';
   import AlertConfirm from '@/components/AlertConfirm.vue';
   import AlertMessage from '@/components/AlertMessage.vue';
@@ -65,7 +65,7 @@
     class="pa-6 container elevation-2" 
     color="white" 
   >
-    <p class="mt-8 mb-2 title">
+    <p class="mt-2 mb-2 title">
       Cadastro de Produtos
     </p>
 
@@ -129,7 +129,6 @@
   }
   .container{
     width: 30%;
-    height: 77%;
     gap: 8%;
     box-sizing: border-box; 
     margin: auto;
@@ -161,7 +160,7 @@
     .container {
       min-width: 80%;
       width: auto; 
-      margin: 15px;
+      margin: 44px;
       padding: 10px;
     }
     .title{
@@ -182,6 +181,12 @@
     :deep(.v-input__details){
       min-height: 5px;
       display: none;
+    }
+  }
+  @media (max-width: 300px) {
+    .container {
+      margin-right: 20px;
+      margin-left: 10px;
     }
   }
 </style>

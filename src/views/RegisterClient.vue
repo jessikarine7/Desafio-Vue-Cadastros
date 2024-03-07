@@ -1,7 +1,7 @@
 <script setup>
   import { ref, computed, onMounted } from 'vue';
   import { createClient  } from '@/services/clients';
-  import { getProdutos } from '@/services/produtos';
+  import { getProducts } from '@/services/products';
   import AlertCancel from '@/components/AlertCancel.vue';
   import AlertConfirm from '@/components/AlertConfirm.vue';
   import AlertMessage from '@/components/AlertMessage.vue';
@@ -62,7 +62,7 @@
   };
 
   onMounted(async () => {
-    const produtosRes = await getProdutos();
+    const produtosRes = await getProducts();
     produtos.value = produtosRes.map((item) => ({ title: item.nome, id: item.id }))
   });
 </script>
@@ -101,9 +101,6 @@
         clearable
         hint="Digite seu nome completo sem acentos"
       ></v-text-field>
-
-      <!-- <input type="text"         v-maska
-        data-maska="#-#"> -->
 
       <v-text-field
         v-model="cpf" 
@@ -207,7 +204,7 @@
   }
   @media (max-width: 1280px) {
     .container {
-      min-width: 270px;
+      min-width: 25%;
       width: auto; 
     }
     .title{
@@ -244,4 +241,4 @@
       display: none;
     }
   }
-</style>
+</style>@/services/product

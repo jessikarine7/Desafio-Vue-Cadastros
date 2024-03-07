@@ -32,12 +32,12 @@ export const createClient = async (postData) => {
   return response.data
 };
 
-export const updateClientes = async (id, updatedData) => {
+export const updateClient = async (id, updatedData) => {
   const response = await axios.put(`${API_BASE_URL}/clientes/${id}`, updatedData)
   return response.data
 };
 
-export const deleteClientes = async (id) => {
-  const response = await axios.delete(`${API_BASE_URL}/clientes/${id}`)
-  return response.data
-};
+// export const deleteClientes = async (id) => {
+//   const response = await axios.delete(`${API_BASE_URL}/clientes/${id}`)
+//   return response.data
+// };

@@ -1,13 +1,13 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import Menu from './components/Menu.vue'
-import MenuVertical from './components/MenuVertical.vue'
+import Menu from '@/components/Menu.vue'
+import MenuVertical from '@/components/MenuVertical.vue'
 </script>
 
 <template>
   <Menu />  
   <MenuVertical />
-  <div class="Rotas d-flex">
+  <div class="rotas d-flex">
     <RouterView />
   </div>
 </template>
@@ -18,13 +18,17 @@ import MenuVertical from './components/MenuVertical.vue'
     margin: 0;
     padding: 0;
   }
-
-  .Rotas {
+  .rotas {
     background-color: rgb(248, 247, 247);
     height: calc(100vh - 65px);
-    margin-top: 65px;
+    margin-top: 55px;
     margin-left: 57px;
     padding-top: 20px;
     box-sizing: border-box; 
+  }
+  @media (max-width:500px) {
+    .rotas{
+      margin-top: 20px;
+    }
   }
 </style>

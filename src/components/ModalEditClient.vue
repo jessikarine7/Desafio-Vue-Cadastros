@@ -1,41 +1,41 @@
 <script setup>
-import { defineProps, defineEmits, toRef, ref, onMounted } from 'vue';
-import { updateClientes } from '@/services/clients';
-import { getProdutos } from '@/services/produtos';
-import { useMask } from '@/composables/useMask';
+  import { defineProps, defineEmits, toRef, ref, onMounted } from 'vue';
+  import { updateClient } from '@/services/clients';
+  import { getProducts } from '@/services/products';
+  import { useMask } from '@/composables/useMask';
 
-const emit = defineEmits(['update:modelValue', 'updateData']);
-const props = defineProps(['modelValue', 'editData']);
-const { unmask, optionsCpf, optionsTelefone } = useMask();
+  const emit = defineEmits(['update:modelValue', 'updateData']);
+  const props = defineProps(['modelValue', 'editData']);
+  const { unmask, optionsCpf, optionsTelefone } = useMask();
+  const produtosSelecao = ref([]);
+  const produtosItens = ref([]);
+  const cliente = toRef(() => props.editData);
 
-const emitCloseModal = () => {
-  emit('update:modelValue', false);
-};
+  const emitCloseModal = () => {
+    emit('update:modelValue', false);
+  };
 
-const cliente = toRef(() => props.editData);
+  const confirmEdit = async () => {
+    cliente.value.produto = produtosSelecao.value.map((p) => p.id);
+    delete cliente.value.produtos;
+    
+    try {
+      const itemId = cliente.value.id;
+      await updateClient(itemId, cliente.value);
+      emit('update-data');
+    } catch (error) {
+      console.error('Erro na atualização:', error);
+      emit('update-error');
+    }
+    emitCloseModal();
+  };
 
-const produtosSelecao = ref([]);
-const produtosItens = ref([]);
-
-onMounted(async () => {
-  produtosItens.value = await getProdutos();
-  produtosSelecao.value = produtosItens.value.filter((p) => cliente.value.produto.includes(p.id))
-})
-
-const confirmEdit = async () => {
-  cliente.value.produto = produtosSelecao.value.map((p) => p.id);
-  delete cliente.value.produtos
-
-  try {
-    const itemId = cliente.value.id;
-    await updateClientes(itemId, cliente.value);
-    emit('update-data');
-  } catch (error) {
-    console.error('Erro na atualização:', error);
-    emit('update-error');
-  }
-  emitCloseModal();
-};
+  onMounted(async () => {
+    produtosItens.value = await getProducts();
+    produtosSelecao.value = produtosItens.value.filter((p) => 
+      cliente.value.produto.includes(p.id)
+    );
+  });
 </script>
 
 <template>
@@ -136,6 +136,7 @@ const confirmEdit = async () => {
 </template> 
 
 <style lang="scss" scoped>
+  
   .titulo{
     font-weight: 300;
     font-size: 20px;

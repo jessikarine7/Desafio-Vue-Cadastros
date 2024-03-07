@@ -14,6 +14,7 @@ function clickHome () {
       <v-app-bar
         color="white"
         prominent
+        height="58"
       >
         <v-icon 
           class="pl-8 pr-2"
@@ -36,17 +37,19 @@ function clickHome () {
           class="mr-8"
           color="indigo-accent-4" 
           variant="flat"
+          small
         >Entrar</v-btn> 
       </v-app-bar>
     </v-layout>
   </v-card>
 </template>
 
-<style lang="sass" scoped>
-.MenuTitle
-  color: #304ffe
-  font-weigth: bold
-
-.Home
-  color: gray
+<style lang="scss" scoped>
+  .MenuTitle{
+    color: #304ffe;
+    font-weigth: bold;
+  }
+  .Home{
+    color: gray;
+  }
 </style>

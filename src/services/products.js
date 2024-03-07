@@ -7,7 +7,7 @@ const handleErrors = (error) => {
   throw error
 }
 
-export const getProdutos = async () => {
+export const getProducts = async () => {
   const response = await axios.get(`${API_BASE_URL}/produtos`)
   return response.data
 }

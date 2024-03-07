@@ -8,8 +8,7 @@
         expand-on-hover
         permanent
         rail
-        class="elevation-5"
-        style="margin-top: 65px;"
+        class="elevation-5 navigation"
       >
         <v-list 
           class="d-flex align-center"
@@ -75,4 +74,7 @@
 </template>
 
 <style lang="scss" scoped>
+.navigation{
+  margin-top: 59px;
+}
 </style>

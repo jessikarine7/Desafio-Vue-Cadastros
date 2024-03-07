@@ -3,13 +3,13 @@
     {
       "id": "1",
       "nome": "Produto X",
-      "quantidade": "50",
+      "quantidade": "74",
       "status": true
     },
     {
       "id": "2",
       "nome": "Produto Z",
-      "quantidade": "15",
+      "quantidade": "2",
       "status": true
     },
     {
@@ -35,6 +35,18 @@
       "nome": "sadsa",
       "quantidade": "asds",
       "status": true
+    },
+    {
+      "id": "a5c8",
+      "nome": "teste",
+      "quantidade": "222",
+      "status": true
+    },
+    {
+      "id": "0d46",
+      "nome": "eeeee",
+      "quantidade": "150",
+      "status": false
     }
   ],
   "clientes": [
@@ -48,7 +60,7 @@
         "1",
         "5a43"
       ],
-      "status": true
+      "status": false
     },
     {
       "id": "c16a",

@@ -1,10 +1,10 @@
 <script setup>
   import { ref, onMounted } from 'vue';
   import { getClient  } from '@/services/clients';
-  import ModalEditClientes from '@/components/ModalEditClientes.vue';
-  import PesquisarTabela from '@/components/PesquisarTabela.vue';
-  import AlertMessage from '@/components/AlertMessage.vue';
   import { useMask } from '@/composables/useMask';
+  import ModalEditClient from '@/components/ModalEditClient.vue';
+  import SearchTable from '@/components/SearchTable.vue';
+  import AlertMessage from '@/components/AlertMessage.vue';
 
   const itemsTab = ref([]);
   const search = ref('');
@@ -14,6 +14,17 @@
   const alertType = ref('success');
   const alertMessage = ref('');
   const { addMask } = useMask();
+
+  const headers = ref([
+    { title: 'Id', key: 'id' },
+    { title: 'Nome', key: 'nome' },
+    { title: 'CPF', key: 'cpf' },
+    { title: 'E-mail', key: 'email' },
+    { title: 'Telefone', key: 'telefone' },
+    { title: 'Status', key: 'status' },
+    { title: 'Produtos', key: 'nomesProdutos' },
+    { title: 'Ações', key: '' },
+  ]);
   
   const getStatusString = (status) => {
     return status ? 'Ativo' : 'Inativo';
@@ -50,24 +61,11 @@
     setTimeout(() => {
       showAlertMessage.value= false;
     }, 3000);
-  }
+  };
 
   onMounted(() => {
     getItems();
   });
-
-  const headers = ref([
-    { title: 'Id', key: 'id' },
-    { title: 'Nome', key: 'nome' },
-    { title: 'CPF', key: 'cpf' },
-    { title: 'E-mail', key: 'email' },
-    { title: 'Telefone', key: 'telefone' },
-    { title: 'Status', key: 'status' },
-    { title: 'Produtos', key: 'nomesProdutos' },
-    { title: 'Ações', key: '' },
-  ])
-
-
 </script>
 
 <template>
@@ -77,8 +75,8 @@
     :title="alertMessage" 
   />
 
-  <div class="d-flex flex-column pa-6 mt-12 w-100">
-    <ModalEditClientes
+  <div class="d-flex flex-column container w-100">
+    <ModalEditClient
       v-if="showModalEdit"
       v-model="showModalEdit" 
       :edit-data="editItem" 
@@ -86,55 +84,84 @@
       @update-error="handleUpdateError"
     />
 
-    <PesquisarTabela 
+    <SearchTable 
       @search="search = $event" 
       title="Listagem Clientes"
+      class="pesquisa"
     />
   
-    <v-card class="readonly-8 d-flex elevation-5">
-      <v-data-table 
-        class="ma-5" 
-        :items="itemsTab" 
-        :search="search"
-        :headers="headers"
-      >
-        <template v-slot:item="{ item }">
-          <tr>
-            <td>{{ item.id || '-' }}</td>
-            <td>{{ item.nome || '-' }}</td>
-            <td>{{ addMask('cpf', item.cpf) || '-' }}</td>
-            <td>{{ item.email || '-' }}</td>
-            <td>{{ addMask('telefone', item.telefone) || '-' }}</td>
-            <td>{{ getStatusString(item.status) || '-'}} </td>
+    <v-data-table 
+      class="elevation-5 readonly-8 table"
+      hover
+      :items="itemsTab" 
+      :search="search"
+      :headers="headers"
+    >
+      <template v-slot:item="{ item }">
+        <tr>
+          <td>{{ item.id || '-' }}</td>
+          <td>{{ item.nome || '-' }}</td>
+          <td>{{ addMask('cpf', item.cpf) || '-' }}</td>
+          <td>{{ item.email || '-' }}</td>
+          <td>{{ addMask('telefone', item.telefone) || '-' }}</td>
+          <td>{{ getStatusString(item.status) || '-'}} </td>
 
-            <td>
-              <v-chip 
-                v-for="(p, index) in item.produtos" 
-                :key="index" 
-                class="ma-1"
-              >
-                {{ p.nome.trim() }}
-              </v-chip>
-            </td>
+          <td>
+            <v-chip 
+              v-for="(p, index) in item.produtos" 
+              :key="index" 
+              class="ma-1"
+            >
+              {{ p.nome.trim() }}
+            </v-chip>
+          </td>
 
-            <td @click="openEditModal(item)">
-              <v-icon>mdi-pencil</v-icon>
-            </td>
-          </tr>
-        </template>
-      </v-data-table>
-    </v-card>
+          <td @click="openEditModal(item)">
+            <v-icon>mdi-pencil</v-icon>
+          </td>
+        </tr>
+      </template>
+    </v-data-table>
   </div>
 </template>
 
 <style lang="scss" scoped>
+  @media (max-width:700px) {
+    .table{
+      margin-top: 10px;  
+    }
+    .pesquisa{
+      margin-bottom: 1px;
+    }
+  }
+  @media(max-width:550px){
+    .pesquisa{
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .table{
+      margin-bottom: 70px;
+    }
+  }
+  @media (min-width:380px) {
+    .table{
+      margin-top: 43px;
+    }
+  }
+  .container{
+    padding: 20px;
+    margin-top: 20px;
+  }
+  .pesquisa{
+    margin-bottom: 5px;
+  }
+  .table{
+    min-height: 90%;
+    margin-top: 10px;
+    padding: 15px;
+  }
   .v-row {
     max-height: 90px;
-  }
-  .title{
-    font-weight: 600;
-    color: #1E319E;
-    font-size: 25px;
   }
   :v-deep(.v-row){
     flex: 0px;

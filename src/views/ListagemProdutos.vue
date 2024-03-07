@@ -1,8 +1,8 @@
 <script setup>
   import { ref, onMounted } from 'vue';
-  import { getProdutos } from '@/services/produtos';
+  import { getProducts } from '@/services/products';
   import ModalEdit from '@/components/ModalEditProdutos.vue';
-  import PesquisarTabela from '@/components/PesquisarTabela.vue';
+  import SearchTable from '@/components/SearchTable.vue';
   import AlertMessage from '@/components/AlertMessage.vue';
 
   const itemsTab = ref([]);
@@ -11,6 +11,7 @@
   const editItem = ref(null);
   const showAlertMessage = ref(false);
   const alertType = ref('success');
+  const alertMessage = ref('');
 
   const getStatusString = (status) => {
     return status ? 'Ativo' : 'Inativo';
@@ -21,23 +22,33 @@
     showModalEdit.value = true;
   };
 
-  const handleUpdateData = () => {
-    getItems();
-
-    showAlertMessage.value= true;
-    setTimeout(() => {
-      showAlertMessage.value= false;
-    }, 3000);
-  };
-
   const getItems = async () => {
     try {
-      const response = await getProdutos();
+      const response = await getProducts();
       itemsTab.value = response;
     } catch (error) {
       console.error('Erro ao buscar dados:', error);
     }
   };
+
+  const handleUpdateData = async () => {
+    await getItems();
+    alertMessage.value = 'Seus dados foram atualizados com sucesso!';
+    alertType.value = 'success'
+    showAlertMessage.value = true;
+    setTimeout(() => {
+      showAlertMessage.value= false;
+    }, 3000);
+  };
+
+  const handleUpdateError = () => {
+    alertMessage.value = 'Ocorreu um erro tente novamente!';
+    alertType.value = 'error'
+    showAlertMessage.value = true;
+    setTimeout(() => {
+      showAlertMessage.value= false;
+    }, 3000);
+  }
 
   onMounted(() => {
     getItems();
@@ -49,60 +60,92 @@
     { title: 'Quantidade', key: 'quantidade' },
     { title: 'Status', key: 'status' },
     { title: 'Ações', key: '' },
-  ])
+  ]);
 </script>
 
 <template>
   <AlertMessage
     v-if="showAlertMessage"
     :type="alertType"
-    title="Seus dados foram atualizados com sucesso!" 
+    :title="alertMessage" 
   />
 
-  <div class="d-flex flex-column pa-6 mt-12 w-100">
+  <div class="d-flex flex-column container w-100">
     <ModalEdit 
       v-model="showModalEdit" 
       :edit-data="editItem" 
-      @update-data="handleUpdateData" 
+      @update-data="handleUpdateData"
+      @update-error="handleUpdateError" 
     />
 
-    <PesquisarTabela 
+    <SearchTable 
       @search="search = $event" 
       title="Listagem Produtos"
+      class="pesquisa"
     />
 
-    <v-card class="readonly-8 d-flex elevation-5">
-      <v-data-table 
-        class="ma-5" 
-        :items="itemsTab" 
-        :search="search"
-        :headers="headers"
-      >
-        <template v-slot:item="{ item }">
-          <tr>
-            <td>{{ item.id }}</td>
-            <td>{{ item.nome }}</td>
-            <td>{{ item.quantidade }}</td>
-            <td>{{ getStatusString(item.status) }}</td>
+    <v-data-table 
+      class="elevation-5 readonly-8 table" 
+      hover
+      :items="itemsTab" 
+      :search="search"
+      :headers="headers"
+    >
+      <template v-slot:item="{ item }">
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.nome }}</td>
+          <td>{{ item.quantidade }}</td>
+          <td>{{ getStatusString(item.status) }}</td>
 
-            <td @click="openEditModal(item)">
-              <v-icon>mdi-pencil</v-icon>
-            </td>
-          </tr>
-        </template>
-      </v-data-table>
+          <td @click="openEditModal(item)">
+            <v-icon>mdi-pencil</v-icon>
+          </td>
+        </tr>
+      </template>
+    </v-data-table>
+    <v-card class="readonly-8 d-flex ">
     </v-card>
   </div>
 </template>
 
 <style lang="scss" scoped>
+  @media (max-width:700px) {
+    .table{
+      margin-top: 10px;  
+    }
+    .pesquisa{
+      margin-bottom: 1px;
+    }
+  }
+  @media(max-width:550px){
+    .pesquisa{
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .table{
+      margin-bottom: 70px;
+    }
+  }
+  @media (min-width:380px) {
+    .table{
+      margin-top: 43px;
+    }
+  }
+  .container{
+    padding: 20px;
+    margin-top: 20px;
+  }
+  .pesquisa{
+    margin-bottom: 5px;
+  }
+  .table{
+    min-height: 90%;
+    margin-top: 10px;
+    padding: 15px;
+  }
   .v-row {
     max-height: 90px;
-  }
-  .title{
-    font-weight: 600;
-    color: #1E319E;
-    font-size: 25px;
   }
   :v-deep(.v-row){
     flex: 0px;

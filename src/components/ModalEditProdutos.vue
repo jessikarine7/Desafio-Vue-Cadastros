@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps, defineEmits } from 'vue';
-import { updateProduto } from '../services/produtos';
+import { updateProduto } from '@/services/products';
 
 const emit = defineEmits(['update:modelValue', 'updateData']);
 const props = defineProps(['modelValue', 'editData']);
@@ -17,6 +17,7 @@ const confirmEdit = async () => {
     emit('updateData');
   } catch (error) {
     console.error('Erro na atualização:', error);
+    emit('update-error');
   }
   emitCloseModal();
 };
@@ -86,4 +87,4 @@ const confirmEdit = async () => {
     font-weight: 300;
     font-size: 20px;
   }
-</style>
+</style>../services/product
