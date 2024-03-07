@@ -3,182 +3,37 @@
     {
       "id": "1",
       "nome": "Produto X",
-      "quantidade": "742",
-      "status": true
-    },
-    {
-      "id": "2",
-      "nome": "Produto Z",
-      "quantidade": "20",
-      "status": true
-    },
-    {
-      "id": "5a43",
-      "nome": "Arroz",
-      "quantidade": "30",
-      "status": true
-    },
-    {
-      "id": "223a",
-      "nome": "Monitor",
-      "quantidade": "1",
-      "status": true
-    },
-    {
-      "id": "4b1c",
-      "nome": "Goiaba",
       "quantidade": "10",
       "status": true
     },
     {
-      "id": "e0ec",
-      "nome": "sadsa",
-      "quantidade": "222",
+      "id": "672f",
+      "nome": "Produto Y",
+      "quantidade": "20",
       "status": true
-    },
-    {
-      "id": "a5c8",
-      "nome": "teste",
-      "quantidade": "222",
-      "status": true
-    },
-    {
-      "id": "0d46",
-      "nome": "eeeee",
-      "quantidade": "150",
-      "status": false
     }
   ],
   "clientes": [
     {
-      "id": "db36",
-      "nome": "Jéssica Karine Santos",
-      "cpf": "085.316.304-95",
-      "telefone": "(11) 11111",
-      "email": "jessikarine.santos@gmail.com",
-      "produto": [
-        "1",
-        "5a43"
-      ],
-      "status": true
-    },
-    {
-      "id": "c16a",
-      "nome": "Cliente 01",
-      "cpf": "085.316.304-95",
-      "telefone": "(12) 13",
-      "email": "sdasdasd",
-      "produto": [
-        "2",
-        "5a43",
-        "4b1c"
-      ],
-      "status": true
-    },
-    {
-      "id": "d193",
-      "nome": "Jarbilane bins",
-      "cpf": "213",
-      "telefone": "213",
-      "email": "123",
-      "produto": [
-        "1",
-        "5a43",
-        "223a"
-      ],
-      "status": true
-    },
-    {
-      "id": "dec4",
-      "nome": "asdsad",
-      "cpf": "asd",
-      "telefone": "asd",
-      "email": "",
-      "status": true,
-      "produto": [
-        "1",
-        "4b1c"
-      ]
-    },
-    {
-      "id": "dd77",
-      "nome": "1",
-      "cpf": "1",
-      "telefone": "1",
-      "email": "1",
-      "produto": [
-        "2",
-        "223a"
-      ],
-      "status": false
-    },
-    {
-      "id": "e7f3",
-      "nome": "a",
-      "cpf": "a",
-      "telefone": "a",
-      "email": "a",
-      "produto": [
-        "4b1c",
-        "5a43"
-      ],
-      "status": true
-    },
-    {
-      "id": "22ee",
-      "nome": "2",
-      "cpf": "2",
-      "telefone": "2",
-      "email": "2",
-      "produto": [
-        "223a"
-      ],
-      "status": false
-    },
-    {
-      "id": "68ed",
-      "nome": "jjjjjjjjjjjjjjjjjjj",
+      "id": "5d7f",
+      "nome": "Cliente Teste",
       "cpf": "000.000.000-00",
-      "telefone": "(00)00000-0000",
-      "email": "jjjjjjjjjjjjjjjjjjjjjjj",
+      "telefone": "(00) 00000-0000",
+      "email": "teste@teste.com",
       "produto": [
-        "e0ec",
-        "2"
+        "1",
+        "672f"
       ],
-      "status": false
+      "status": true
     },
     {
-      "id": "421f",
-      "nome": "12321",
-      "cpf": "12312323232",
-      "telefone": "",
-      "email": "",
-      "status": false
-    },
-    {
-      "id": "4874",
-      "nome": "",
-      "cpf": "12321321323",
-      "telefone": "12312323232",
-      "email": "",
-      "status": false
-    },
-    {
-      "id": "73fd",
-      "nome": "",
-      "cpf": "12323232323",
-      "telefone": "21322323232",
-      "email": "",
-      "status": false
-    },
-    {
-      "id": "c0c0",
-      "nome": "testeFinal",
-      "cpf": "22222222222",
-      "telefone": "33333333333",
-      "email": "aaaaaaaaaaaaaaaaaa",
+      "id": "18e5",
+      "nome": "Cliente Teste 2",
+      "cpf": "11111111111",
+      "telefone": "11111111111",
+      "email": "teste02@teste.com",
       "produto": [
-        "e0ec"
+        "1"
       ],
       "status": true
     }

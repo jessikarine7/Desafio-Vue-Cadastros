@@ -24,9 +24,9 @@
         color="red-darken-4"
       >mdi-alert-circle</v-icon>
 
-      <p 
-        class="titulo"
-      >Tem certeza que deseja cancelar?</p>
+      <p class="title">
+        Tem certeza que deseja cancelar?
+      </p>
 
       <v-row class="mt-8">
         <v-btn
@@ -50,7 +50,7 @@
 </template> 
 
 <style lang="scss" scoped>
-  .titulo{
+  .title{
     font-weight: 300;
     font-size: 20px;
   }

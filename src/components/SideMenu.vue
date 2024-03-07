@@ -36,7 +36,7 @@
           <v-list-item 
             prepend-icon="mdi-account-multiple" 
             title="Cadastro Cliente" 
-            value="registerClient"
+            value="register-client"
             :to="{ name: 'register-client' }"
           ></v-list-item>
 
@@ -51,14 +51,14 @@
             prepend-icon="mdi-list-box" 
             title="Listagem Produtos" 
             value="listagemProdutos"
-            :to="{ name: 'listagem-produtos' }"
+            :to="{ name: 'list-products' }"
             ></v-list-item>
 
           <v-list-item 
             prepend-icon="mdi-account-file-text" 
             title="Listagem Clientes" 
-            value="listagemClientes"
-            :to="{ name: 'listagem-clientes' }"
+            value="list-clients"
+            :to="{ name: 'list-clients' }"
           ></v-list-item>
         </v-list>
       </v-navigation-drawer>

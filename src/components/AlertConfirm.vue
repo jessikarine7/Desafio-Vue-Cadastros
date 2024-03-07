@@ -29,9 +29,9 @@
         color="indigo-accent-4"
       >mdi-alert-circle-check</v-icon>
 
-      <p 
-        class="titulo"
-      >Tem certeza que deseja Confirmar?</p>
+      <p class="title">
+        Tem certeza que deseja Confirmar?
+      </p>
 
       <v-row class="mt-8">
         <v-btn
@@ -54,7 +54,7 @@
 </template> 
 
 <style lang="scss" scoped>
-  .titulo{
+  .title{
     font-weight: 300;
     font-size: 20px;
   }

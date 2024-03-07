@@ -1,8 +1,7 @@
 <script setup>
-  import { ref, defineProps } from 'vue';
+  import { defineProps } from 'vue';
 
   const props = defineProps({title: String, type: String});
-
 </script>
 
 <template>
@@ -21,8 +20,8 @@
 </template> 
 
 <style lang="scss" scoped>
-.alert{
-  font-size: 18px;
-  right: 10px;
-}
+  .alert{
+    font-size: 18px;
+    right: 10px;
+  }
 </style>

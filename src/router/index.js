@@ -19,14 +19,14 @@ const router = createRouter({
       component: () => import('../views/RegisterClient.vue')
     },
     {
-      path: '/listagem-produtos',
-      name: 'listagem-produtos',
-      component: () => import('../views/ListagemProdutos.vue')
+      path: '/list-products',
+      name: 'list-products',
+      component: () => import('../views/ListProducts.vue')
     },
     {
-      path: '/listagem-clientes',
-      name: 'listagem-clientes',
-      component: () => import('../views/ListagemClientes.vue')
+      path: '/list-clients',
+      name: 'list-clients',
+      component: () => import('../views/ListClients.vue')
     }
   ]
 })

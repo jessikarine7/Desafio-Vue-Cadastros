@@ -16,24 +16,24 @@
     { 
       title: 'Cadastro Produto', 
       subtitle: 'Cadastrar um novo produto', 
-      path: '/cadastro-produtos' 
-    },
-    { 
-      title: 'Listagem Produtos', 
-      subtitle: 'Listagem de produtos', 
-      path: '/listagem-produtos' 
+      path: '/register-product' 
     },
     { 
       title: 'Listagem Clientes', 
       subtitle: 'Listagem de clientes', 
-      path: '/listagem-clientes' 
+      path: '/list-clients' 
+    },
+    { 
+      title: 'Listagem Produtos', 
+      subtitle: 'Listagem de produtos', 
+      path: '/list-products' 
     },
   ]);
 </script>
 
 <template>
   <div class="d-flex flex-column container pl-7">
-    <p class="tituloHome pl-4">
+    <p class="titleHome pl-4">
       Lista de Opções
     </p>
 
@@ -49,9 +49,9 @@
           color="white" 
           class="d-flex elevation-5 mr-4 cardContainer"
         >
-          <v-col class="detalheCard"></v-col>
+          <v-col class="detailsCard"></v-col>
 
-          <v-col class="cardTitulo" cols="9">
+          <v-col cols="9">
             <v-card-title class="titleCard">
               {{ item.title }}
             </v-card-title>
@@ -80,7 +80,7 @@
     }
   }
   @media (max-width:900px){
-    .tituloHome{
+    .titleHome{
       font-size: 18px;
     }
     .cardContainer{
@@ -99,12 +99,12 @@
     color: #1E319E;
     font-size: 18px;
   }
-  .tituloHome{
+  .titleHome{
     font-weight: bold;
     font-size: 25px;
     margin-bottom: 15px;
   }
-  .detalheCard{
+  .detailsCard{
     background: #304ffe;
     width: 5px;
     border-radius: 10px 0px 0px 10px;
@@ -112,7 +112,7 @@
   :deep(.v-card .v-card-title){
     line-height: 12px;
   }
-  :deep(.detalheCard){
+  :deep(.detailsCard){
     flex-basis: 0;
     flex-grow: 0;
     max-width: 0;

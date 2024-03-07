@@ -1,12 +1,13 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router';
-import Menu from '@/components/Menu.vue';
-import SideMenu from '@/components/SideMenu.vue';
+  import { RouterLink, RouterView } from 'vue-router';
+  import Menu from '@/components/Menu.vue';
+  import SideMenu from '@/components/SideMenu.vue';
 </script>
 
 <template>
   <Menu />  
   <SideMenu />
+  
   <div class="rotas d-flex">
     <RouterView />
   </div>

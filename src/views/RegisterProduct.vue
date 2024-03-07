@@ -42,7 +42,7 @@
     } catch (error) {
       console.error('Erro ao criar cliente:', error);
     }
-  }
+  };
 </script>
 
 <template>
@@ -135,7 +135,7 @@
       gap:10px;
     }
   }
-  @media (max-width: 500px) {
+  @media (max-width: 800px) {
     .container {
       min-width: 80%;
       width: auto; 
@@ -185,6 +185,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-block-start: inherit;
+    margin-top: 38px;
   }
   .title{
     font-weight: 600;

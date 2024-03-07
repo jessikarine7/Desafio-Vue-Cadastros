@@ -1,26 +1,26 @@
 <script setup>
-import { defineProps, defineEmits } from 'vue';
-import { updateProduct } from '@/services/products';
+  import { defineProps, defineEmits } from 'vue';
+  import { updateProduct } from '@/services/products';
 
-const emit = defineEmits(['update:modelValue', 'updateData']);
-const props = defineProps(['modelValue', 'editData']);
+  const emit = defineEmits(['update:modelValue', 'updateData']);
+  const props = defineProps(['modelValue', 'editData']);
 
-const emitCloseModal = () => {
-  emit('update:modelValue');
-};
+  const emitCloseModal = () => {
+    emit('update:modelValue');
+  };
 
-const confirmEdit = async () => {
-  console.log(props.editData.id);
-  try {
-    const itemId = props.editData.id;
-    await updateProduct(itemId, props.editData);
-    emit('updateData');
-  } catch (error) {
-    console.error('Erro na atualização:', error);
-    emit('update-error');
-  }
-  emitCloseModal();
-};
+  const confirmEdit = async () => {
+    console.log(props.editData.id);
+    try {
+      const itemId = props.editData.id;
+      await updateProduct(itemId, props.editData);
+      emit('updateData');
+    } catch (error) {
+      console.error('Erro na atualização:', error);
+      emit('update-error');
+    }
+    emitCloseModal();
+  };
 </script>
 
 <template>
@@ -85,7 +85,7 @@ const confirmEdit = async () => {
 </template> 
 
 <style lang="scss" scoped>
-   @media (max-width:800px) {
+  @media (max-width:800px) {
     .dialog{
       min-width: 350px;
     }

@@ -1,11 +1,11 @@
 <script setup>
-import { useRouter } from "vue-router";
+  import { useRouter } from "vue-router";
 
-const router = useRouter();
+  const router = useRouter();
 
-function clickHome () {
-  router.push({ name: 'home' });
-}
+  function clickHome () {
+    router.push({ name: 'home' });
+  };
 </script>
 
 <template>
